@@ -1,5 +1,6 @@
 <?php
 
+use App\Category;
 use App\Company;
 use App\Job;
 use App\User;
@@ -17,5 +18,9 @@ class DatabaseSeeder extends Seeder
         factory(User::class, 20)->create();
         factory(Company::class, 20)->create();
         factory(Job::class, 20)->create();
+        $categories = ['Web Developer', 'Mobile Developer'];
+        foreach ($categories as $item) {
+            Category::create(['name' => $item]);
+        }
     }
 }
