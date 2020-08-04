@@ -39,7 +39,18 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        <li class="nav-link">
+                            <a href="">Trang Chủ</a>
+                        </li>
+                        <li class="nav-link">
+                            <a href="">Việc Làm</a>
+                        </li>
+                        <li class="nav-link">
+                            <a href="">Nhà Tuyển Dụng</a>
+                        </li>
+                        <li class="nav-link">
+                            <a href="">Ứng Viên</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
