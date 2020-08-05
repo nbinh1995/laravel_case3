@@ -9,26 +9,22 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Scripts -->
-    {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <!-- Fonts Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" />
     <!-- Styles -->
-    {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 </head>
 
 <body>
     <div id="app">
-        <header class="container shadow-sm">
+        <header class="container-fluid shadow-sm header">
             <div class="row">
-                <div class="col-sm-12">
+                <div class="col-sm-12 menu">
                     <nav class="navbar fixed-top navbar-expand-md navbar-light bg-white">
                         <div class="container">
                             <a class="navbar-brand" href="{{ url('/') }}">
@@ -43,16 +39,16 @@
                                 <!-- Left Side Of Navbar -->
                                 <ul class="navbar-nav mr-auto">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="">{{ __('Trang Chủ') }}</a>
+                                        <a class="nav-link" href="{{route('home')}}">{{ __('Trang Chủ') }}</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="">{{ __('Việc Làm') }}</a>
+                                        <a class="nav-link" href="{{route('listJobs')}}">{{ __('Việc Làm') }}</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="">{{ __('Nhà Tuyển Dụng') }}</a>
+                                        <a class="nav-link" href="{{route('listCompanies')}}">{{ __('Nhà Tuyển Dụng') }}</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="">{{ __('Ứng Viên') }}</a>
+                                        <a class="nav-link" href="{{route('home')}}">{{ __('Ứng Viên') }}</a>
                                     </li>
                                 </ul>
 
@@ -95,37 +91,39 @@
                     </nav>
                 </div>
             </div>
-            <div class="row" style="margin-top: 100px">
-                @yield('search')
+            <div class="box-search">
+                    @yield('search')
             </div>
         </header>
 
-        <main class="py-4">
+        <main class="py-4 box-content bg-light">
             @yield('content')
         </main>
 
-        <footer class="container mt-5">
+        <footer class="container-fluid mt-5 footer">
             <div class="row justify-content-center">
-                <div class="col-sm-3">
+                {{-- <div class="col-sm-3">
                     <img src="{{asset('/storage/avatar/logo_jobport.png')}}" alt="" width="50px">
-                </div>
-                <div class="col-sm-6">
-                    <div class="row justify-content-center">
-                        <div class="col-sm-8">
-                            <div class="col-sm-12 text-center">
-                                <h6 class="h6">© 2020 Codegym. All rights reserved</h6>
-                            </div>
-                            <div class="col-sm-12 text-center">
-                                <i class="px-1 fab fa-facebook fa-3x"></i>
-                                <i class="px-1 fab fa-twitter-square fa-3x"></i>
-                                <i class="px-1 fab fa-instagram fa-3x"></i>
-                                <i class="px-1 fab fa-google-plus-g fa-3x"></i>
-                            </div>
+            </div> --}}
+            <div class="col-sm-6">
+                <div class="row justify-content-center">
+                    <div class="col-sm-8">
+                        <div class="col-sm-12 text-center">
+                            <h6 class="h6">© 2020 Codegym. All rights reserved</h6>
+                        </div>
+                        <div class="col-sm-12 text-center social">
+                            <i class="px-1 fab fa-facebook fa-3x"></i>
+                            <i class="px-1 fab fa-twitter-square fa-3x"></i>
+                            <i class="px-1 fab fa-instagram fa-3x"></i>
+                            <i class="px-1 fab fa-google-plus-g fa-3x"></i>
+                            <i class="px-1 fab fa-linkedin fa-3x"></i>
+                            <i class="px-1 fab fa-pinterest-square fa-3x"></i>
                         </div>
                     </div>
                 </div>
             </div>
-        </footer>
+    </div>
+    </footer>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
@@ -134,6 +132,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
         integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
     </script>
+    <!-- Scripts -->
+    <script src="{{ asset('js/script.js') }}" defer></script>
 </body>
 
 </html>

@@ -16,5 +16,13 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('/jobs', 'HomeController@jobs')->name('jobs');
-Route::get('/recruiters', 'HomeController@recruiters')->name('recruiters');
+Route::get('/jobs', 'HomeController@jobs')->name('listJobs');
+Route::get('/companies', 'HomeController@companies')->name('listCompanies');
+Route::get('/candidates', 'HomeController@candidates')->name('listCandidate');
+
+Route::group(['prefix' => 'dashboard'], function () {
+    Route::get('/', 'AdminController@index')->name('dashboard');
+    Route::get('/users', 'AdminController@users')->name('dashboard.users');
+    Route::get('/jobs', 'AdminController@jobs')->name('dashboard.jobs');
+    Route::get('/companies', 'AdminController@companies')->name('dashboard.companies');
+});

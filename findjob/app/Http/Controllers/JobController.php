@@ -2,11 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Repositories\JobRepositoryInterface;
 use App\Job;
 use Illuminate\Http\Request;
 
 class JobController extends Controller
 {
+    protected $repository;
+
+    public function __construct(JobRepositoryInterface $repository)
+    {
+        $this->repository = $repository;
+    }
     /**
      * Display a listing of the resource.
      *

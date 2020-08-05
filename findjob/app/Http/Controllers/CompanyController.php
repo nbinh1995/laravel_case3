@@ -3,10 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Company;
+use App\Http\Repositories\CompanyRepositoryInterface;
 use Illuminate\Http\Request;
 
 class CompanyController extends Controller
 {
+
+    protected $repository;
+
+    public function __construct(CompanyRepositoryInterface $repository)
+    {
+        $this->repository = $repository;
+    }
     /**
      * Display a listing of the resource.
      *

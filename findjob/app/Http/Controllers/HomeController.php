@@ -2,45 +2,41 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Repositories\CompanyRepositoryInterface;
+use App\Http\Repositories\JobRepositoryInterface;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+    protected $job;
+    protected $company;
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct(
+        JobRepositoryInterface $job,
+        CompanyRepositoryInterface $company
+    ) {
         // $this->middleware('auth');
+        $this->job = $job;
+        $this->company = $company;
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
     public function index()
-    {   
+    {
         return view('home');
     }
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
+
     public function jobs()
     {
-        return view('home');
+        $jobs = $this->job->paginate();
+        return view('site.list_jobs', compact('jobs'));
     }
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function recruiters()
+
+    public function companies()
     {
-        return view('home');
+        return view('site.list_companies');
     }
 }

@@ -18,6 +18,7 @@ $factory->define(Company::class, function (Faker $faker) {
         'logo' => '/storage/avatar/logo.svg',
         'cover_photo' => '/storage/cover/banner.jpg',
         'slogan' => 'No Pain, No Gain',
-        'description' => $faker->paragraph(rand(4, 8))
+        'description' => $faker->paragraph(rand(4, 8)),
+        'hot' => rand(0, 1)
     ];
 });

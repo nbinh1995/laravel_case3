@@ -2,11 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Repositories\ProfileRepositoryInterface;
 use App\Profile;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
+    protected $repository;
+
+    public function __construct(ProfileRepositoryInterface $repository)
+    {
+        $this->repository = $repository;
+    }
     /**
      * Display a listing of the resource.
      *

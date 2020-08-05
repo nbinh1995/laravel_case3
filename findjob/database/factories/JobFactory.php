@@ -12,7 +12,7 @@ use Illuminate\Support\Str;
 $factory->define(Job::class, function (Faker $faker) {
     $type = ['FullTime', 'PartTime'];
     return [
-        'user_id' => User::all()->random()->id,
+        // 'user_id' => User::all()->random()->id,
         'company_id' => Company::all()->random()->id,
         'category_id' => rand(1, 2),
         'title' => $name = $faker->text,
@@ -23,6 +23,7 @@ $factory->define(Job::class, function (Faker $faker) {
         'address' => $faker->address,
         'status' => rand(0, 1),
         'type' => $type[rand(0, 1)],
-        'last_date' => $faker->DateTime
+        'last_date' => $faker->DateTime,
+        'hot' => rand(0, 1)
     ];
 });
