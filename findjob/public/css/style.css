@@ -2,7 +2,9 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "Spinnaker", sans-serif;
 }
+
 .spinner {
     display: none;
     position: fixed;
@@ -39,6 +41,9 @@
 /*========
   main
 ========*/
+.company-card {
+    cursor: pointer;
+}
 .box-company {
     position: relative;
     margin-bottom: 16px;
@@ -47,6 +52,30 @@
     position: absolute;
     bottom: -20px;
     left: 30px;
+}
+.body-company {
+    font-size: 10px;
+    opacity: 0.8;
+}
+.body-company h5 {
+    font-size: 16px;
+}
+.job-card {
+    cursor: pointer;
+}
+.create-box {
+    border: 1px solid #d5d5d5;
+    border-radius: 8px;
+    font-size: 8px;
+    padding: 4px;
+}
+.line-clamp {
+    /* display: block; */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 /*========
    footer

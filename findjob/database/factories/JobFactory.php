@@ -15,7 +15,7 @@ $factory->define(Job::class, function (Faker $faker) {
         // 'user_id' => User::all()->random()->id,
         'company_id' => Company::all()->random()->id,
         'category_id' => rand(1, 2),
-        'title' => $name = $faker->text,
+        'title' => $name = $faker->sentence,
         'slug' => Str::slug($name),
         'roles' => $faker->text,
         'description' => $faker->paragraph(rand(4, 8)),

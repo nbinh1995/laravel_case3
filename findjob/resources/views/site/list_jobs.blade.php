@@ -1,7 +1,5 @@
 @extends('layouts.app')
-@php
-dump($jobs);
-@endphp
+
 @section('search')
 <div class="container">
     <div class="row">
@@ -46,14 +44,40 @@ dump($jobs);
         </div>
         <div class="col-md-8 mt-3">
             @forelse ($jobs as $item)
-            @php
-            dd($item);
-            @endphp
-            <div class="media mb-5 shadow-sm bg-white">
-                <img src="https://via.placeholder.com/300" class="align-self-start mr-3" style="width:100px">
+            <div class="media mb-5 shadow-sm bg-white job-card">
+                <img src="{{$item->company->logo}}" class="align-self-start mr-3" style="width:100px">
                 <div class="media-body">
-                    <h4>Media Top</h4>
-                    <p>Lorem ipsum...</p>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h5>{{$item->title}}</h5>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <i class="far fa-building"></i> {{$item->company->c_name}}
+                                    </div>
+                                    <div class="col-md-12">
+                                        <i class="fas fa-map-marker-alt"></i> {{$item->address}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="row justify-content-end align-items-center">
+                                    <div class="col-md-12 mb-2">
+                                        <span class='create-box'>{{$item->created_at->diffForHumans()}}</span>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <i class="far fa-calendar-alt"></i>
+                                        {{date('d/m/Y', strtotime($item->last_date))}}
+                                    </div>
+                                    <div class="col-md-12 mb-2">
+                                        <button class="btn btn-success btn-sm">Apply</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             @empty

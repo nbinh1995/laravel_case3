@@ -4,33 +4,17 @@ namespace App\Http\Repositories;
 
 use App\Company;
 
-class CompanyRepository implements CompanyRepositoryInterface
+class CompanyRepository extends EloquentRepository implements CompanyRepositoryInterface
 
 {
-    protected $model;
 
     public function __construct(Company $model)
     {
-        $this->model = $model;
+        parent::__construct($model);
     }
 
-    public function paginate()
+    public function paginate($amount)
     {
-    }
-
-    public function find($id)
-    {
-    }
-
-    public function store($data)
-    {
-    }
-
-    public function update($id, $data)
-    {
-    }
-
-    public function destroy($id)
-    {
+        return $this->model::with('jobs:company_id')->paginate($amount);
     }
 }

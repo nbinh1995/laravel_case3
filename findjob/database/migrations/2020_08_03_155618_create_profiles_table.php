@@ -25,6 +25,7 @@ class CreateProfilesTable extends Migration
             $table->text('cover_letter');
             $table->text('resume');
             $table->string('avatar');
+            $table->softDeletes();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });

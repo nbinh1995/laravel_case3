@@ -39,28 +39,29 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        @for ($i = 0; $i < 12; $i++) 
+        @forelse ($companies as $item)
         <div class="col-md-3 mb-5">
-            <div class="card">
+            <div class="card company-card">
                 <div class="box-company">
-                    <img src="https://via.placeholder.com/300" class="card-img-top" alt="...">
-                    <div class="logo-company shadow-sm">
-                        <img src="https://via.placeholder.com/300" alt="" style="width:60px">
+                    <img src="{{$item->cover_photo}}" class="card-img-top" alt="...">
+                    <div class="logo-company shadow-sm bg-white">
+                        <img src="{{$item->logo}}" alt="" style="width:60px">
                     </div>
                 </div>
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                        additional
-                        content.
-                        This card has even longer content than the first to show that equal height action.</p>
+                <div class="card-body body-company">
+                    <h5 class="card-title text-center">{{$item->c_name}}</h5>
+                    <p class="font-italic"><i class="fas fa-map-marker-alt"></i> {{$item->address}}</p>
+                    <p class="card-text line-clamp">{{$item->description}}</p>
                 </div>
-                <div class="card-footer">
-                    <small class="text-muted">Last updated 3 mins ago</small>
+                <div class="card-footer text-center">
+                    <small class="text-primary">{{$item->jobs->count()}} việc làm đang tuyển</small>
                 </div>
             </div>
         </div>
-        @endfor
+        @empty
+
+        @endforelse
+        {{ $companies->appends(request()->query()) }}
     </div>
 </div>
 @endsection

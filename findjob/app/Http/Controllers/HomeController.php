@@ -9,36 +9,38 @@ use App\Company;
 
 class HomeController extends Controller
 {
-    protected $job;
-    protected $company;
+    const AmountJobs = 6;
+    const AmountCompanies = 8;
+    protected $jobRepository;
+    protected $companyRepository;
     /**
      * Create a new controller instance.
      *
      * @return void
      */
     public function __construct(
-        JobRepositoryInterface $job,
-        CompanyRepositoryInterface $company
+        JobRepositoryInterface $jobRepository,
+        CompanyRepositoryInterface $companyRepository
     ) {
         // $this->middleware('auth');
-        $this->job = $job;
-        $this->company = $company;
+        $this->jobRepository = $jobRepository;
+        $this->companyRepository = $companyRepository;
     }
 
     public function index()
-    {
+    {   
         return view('home');
     }
 
     public function jobs()
     {
-        $jobs = $this->job->paginate();
-        dump($jobs[0]->company->logo);
+        $jobs = $this->jobRepository->paginate(self::AmountJobs);
         return view('site.list_jobs', compact('jobs'));
     }
 
     public function companies()
     {
-        return view('site.list_companies');
+        $companies = $this->companyRepository->paginate(self::AmountCompanies);
+        return view('site.list_companies', compact('companies'));
     }
 }

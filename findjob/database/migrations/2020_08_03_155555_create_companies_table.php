@@ -27,6 +27,7 @@ class CreateCompaniesTable extends Migration
             $table->string('slogan');
             $table->text('description');
             $table->integer('hot')->default(0);
+            $table->softDeletes();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
