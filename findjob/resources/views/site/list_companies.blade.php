@@ -41,7 +41,7 @@
     <div class="row justify-content-center">
         @forelse ($companies as $item)
         <div class="col-md-3 mb-5">
-            <div class="card company-card">
+            <div class="card cursor">
                 <div class="box-company">
                     <img src="{{$item->cover_photo}}" class="card-img-top" alt="...">
                     <div class="logo-company shadow-sm bg-white">

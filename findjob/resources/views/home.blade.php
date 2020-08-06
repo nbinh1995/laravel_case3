@@ -42,14 +42,21 @@
         <div class="col-md-12">
             <h3>Nhà Tuyển Dụng Nổi Bật</h3>
             <hr>
-            <div class="row justify-content-center"> 
-                @for ($i = 0; $i < 5; $i++) 
-                    <div class="col-md-2">
-                        <div class="card">
-                            <img src="https://via.placeholder.com/300" class="card-img-top" alt="...">
+            <div class="row justify-content-center">
+                @forelse ($companies as $item)
+                <div class="col-md-2">
+                    <div class="cursor">
+                        <div class="card box-company">
+                            <img src="{{ $item->cover_photo }}" class="card-img-top" alt="...">
+                            <div class="logo-company shadow-sm bg-white" style="left: 0;">
+                                <img src="{{$item->logo}}" alt="" style="width:60px">
+                            </div>
                         </div>
                     </div>
-                @endfor
+                </div>
+                @empty
+
+                @endforelse
             </div>
         </div>
     </div>
@@ -58,23 +65,34 @@
             <h3>Việc Làm Nổi Bật Nổi Bật</h3>
             <hr>
             <div class="row justify-content-center">
-                @for ($i = 0; $i < 4; $i++)
-                <div class="col-md-3"> 
-                    <div class="card">
-                        <img src="https://via.placeholder.com/300" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                additional
-                                content.
-                                This card has even longer content than the first to show that equal height action.</p>
+                @forelse ($jobs as $item)
+                <div class="col-md-3">
+                    <div class="card cursor">
+                        <div class="box-company">
+                            <img src="{{$item->company->cover_photo}}" class="card-img-top" alt="...">
+                            <div class="logo-company shadow-sm bg-white">
+                                <img src="{{$item->company->logo}}" alt="" style="width:60px">
+                            </div>
+                        </div>
+                        <div class="card-body body-company">
+                            <h5 class="card-title text-uppercase text-center">{{$item->position}}</h5>
+                            <div class="card-text"><i class="far fa-building"></i> {{$item->company->c_name}}</div>
+                            <div class="card-text"><i class="fas fa-map-marker-alt"></i> {{$item->address}}</div>
+                            <div><i class="far fa-calendar-alt"></i>
+                                {{date('d/m/Y', strtotime($item->last_date))}}</div>
                         </div>
                         <div class="card-footer">
-                            <small class="text-muted">Last updated 3 mins ago</small>
+                            <small class="text-muted font-italic">Ngày Đăng:
+                                {{date('d/m/Y', strtotime($item->create_at))}}</small>
                         </div>
                     </div>
                 </div>
-                @endfor
+                @empty
+
+                @endforelse
+
+
+
             </div>
         </div>
     </div>

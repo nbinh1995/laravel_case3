@@ -11,6 +11,7 @@ class HomeController extends Controller
 {
     const AmountJobs = 6;
     const AmountCompanies = 8;
+
     protected $jobRepository;
     protected $companyRepository;
     /**
@@ -22,14 +23,19 @@ class HomeController extends Controller
         JobRepositoryInterface $jobRepository,
         CompanyRepositoryInterface $companyRepository
     ) {
-        // $this->middleware('auth');
         $this->jobRepository = $jobRepository;
         $this->companyRepository = $companyRepository;
     }
 
     public function index()
-    {   
-        return view('home');
+    {
+        $jobs = $this->jobRepository->isHotJobs()
+                                    ->take(4)
+                                    ->get();
+        $companies = $this->companyRepository->isHotCompanies()
+                                             ->take(5)
+                                             ->get(['cover_photo','logo']);
+        return view('home', compact('jobs', 'companies'));
     }
 
     public function jobs()

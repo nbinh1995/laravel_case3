@@ -18,4 +18,9 @@ class JobRepository extends EloquentRepository  implements JobRepositoryInterfac
     {
         return $this->model::with(['company:id,c_name,logo', 'category:id,name'])->paginate($amount);
     }
+
+    public function isHotJobs()
+    {
+        return $this->model::where('hot', 1)->with(['company:id,c_name,cover_photo,logo', 'category:id,name']);
+    }
 }

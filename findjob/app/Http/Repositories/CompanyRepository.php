@@ -17,4 +17,9 @@ class CompanyRepository extends EloquentRepository implements CompanyRepositoryI
     {
         return $this->model::with('jobs:company_id')->paginate($amount);
     }
+
+    public function isHotCompanies()
+    {
+        return $this->model::where('hot', 1);
+    }
 }
