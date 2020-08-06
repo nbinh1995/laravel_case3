@@ -47,4 +47,19 @@ class User extends Authenticatable
     {
         return $this->hasOne(Profile::class, 'user_id', 'id');
     }
+
+    public function jobs()
+    {
+        return $this->belongsToMany(Job::class, 'job_user', 'job_id', 'user_id');
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($user) { // before delete() method call this
+            if ($user->role == 1) $user->company()->delete;
+            if ($user->role == 0) $user->profile()->delete;
+        });
+    }
 }

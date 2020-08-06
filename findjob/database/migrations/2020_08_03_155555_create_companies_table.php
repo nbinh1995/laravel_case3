@@ -13,9 +13,10 @@ class CreateCompaniesTable extends Migration
      */
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::create('companies', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
+            $table->bigInteger('user_id')->unsigned();
             $table->string('c_name');
             $table->string('slug');
             $table->text('address');
@@ -27,7 +28,9 @@ class CreateCompaniesTable extends Migration
             $table->text('description');
             $table->integer('hot')->default(0);
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
+        Schema::enableForeignKeyConstraints();
     }
 
     /**
@@ -37,6 +40,8 @@ class CreateCompaniesTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('companies');
+        Schema::enableForeignKeyConstraints();
     }
 }

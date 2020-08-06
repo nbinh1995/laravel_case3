@@ -13,9 +13,10 @@ class CreateProfilesTable extends Migration
      */
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::create('profiles', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
+            $table->bigInteger('user_id')->unsigned();
             $table->text('address');
             $table->string('gender');
             $table->string('birth');
@@ -25,7 +26,9 @@ class CreateProfilesTable extends Migration
             $table->text('resume');
             $table->string('avatar');
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
+        Schema::enableForeignKeyConstraints();
     }
 
     /**
@@ -35,6 +38,8 @@ class CreateProfilesTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('profiles');
+        Schema::enableForeignKeyConstraints();
     }
 }

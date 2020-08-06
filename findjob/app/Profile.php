@@ -8,10 +8,11 @@ class Profile extends Model
 {
     protected $guarded = [];
 
-    protected function user(){
-        
+    protected function user()
+    {
+        return $this->hasOne(User::class, 'user_id', 'id');
     }
-    
+
     public function format()
     {
         return [
@@ -21,4 +22,13 @@ class Profile extends Model
             'last_updated' => $this->updated_at->diffForHumans(),
         ];
     }
+
+    // public static function boot()
+    // {
+    //     parent::boot();
+
+    //     static::deleting(function ($profile) { // before delete() method call this
+    //         $profile->profile()->delete;
+    //     });
+    // }
 }

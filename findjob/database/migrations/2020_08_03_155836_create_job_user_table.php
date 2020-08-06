@@ -13,12 +13,16 @@ class CreateJobUserTable extends Migration
      */
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::create('job_user', function (Blueprint $table) {
             $table->id();
-            $table->integer('job_id');
-            $table->integer('user_id');
+            $table->bigInteger('job_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned();
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('job_id')->references('id')->on('jobs')->onDelete('cascade');
         });
+        Schema::enableForeignKeyConstraints();
     }
 
     /**
@@ -28,6 +32,8 @@ class CreateJobUserTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('job_user');
+        Schema::enableForeignKeyConstraints();
     }
 }

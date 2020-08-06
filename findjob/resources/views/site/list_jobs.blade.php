@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @php
-var_dump($jobs);
+dump($jobs);
 @endphp
 @section('search')
 <div class="container">
@@ -47,7 +47,7 @@ var_dump($jobs);
         <div class="col-md-8 mt-3">
             @forelse ($jobs as $item)
             @php
-                dd($item);
+            dd($item);
             @endphp
             <div class="media mb-5 shadow-sm bg-white">
                 <img src="https://via.placeholder.com/300" class="align-self-start mr-3" style="width:100px">

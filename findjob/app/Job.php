@@ -23,6 +23,11 @@ class Job extends Model
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'job_user', 'user_id', 'job_id');
+    }
+
     public function format()
     {
         return [
@@ -32,4 +37,18 @@ class Job extends Model
             'last_updated' => $this->updated_at->diffForHumans(),
         ];
     }
+
+    public function getRouteKeyName()
+    {
+        return $this->slug;
+    }
+
+    // public static function boot()
+    // {
+    //     parent::boot();
+
+    //     static::deleting(function ($job) { // before delete() method call this
+    //         $job->jobs()->delete;
+    //     });
+    // }
 }

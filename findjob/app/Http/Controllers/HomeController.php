@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Repositories\CompanyRepositoryInterface;
 use App\Http\Repositories\JobRepositoryInterface;
 use Illuminate\Http\Request;
+use App\Company;
 
 class HomeController extends Controller
 {
@@ -32,6 +33,7 @@ class HomeController extends Controller
     public function jobs()
     {
         $jobs = $this->job->paginate();
+        dump($jobs[0]->company->logo);
         return view('site.list_jobs', compact('jobs'));
     }
 

@@ -3,6 +3,7 @@
 namespace App\Http\Repositories;
 
 use App\Job;
+use Illuminate\Support\Collection;
 
 class JobRepository implements JobRepositoryInterface
 
@@ -16,7 +17,17 @@ class JobRepository implements JobRepositoryInterface
 
     public function paginate()
     {
-        return $this->model::paginate(6);
+        // return $this->model::with(
+        //     [
+        //         'company' => function ($query) {
+        //             $query->select('id', 'logo');
+        //         },
+        //         'category' =>  function ($query) {
+        //             $query->select('id', 'name');
+        //         }
+        //     ]
+        // )->paginate(6);
+        return $this->model::with(['company:id,c_name,logo', 'category:id,name'])->paginate(6);
     }
 
     public function find($id)
