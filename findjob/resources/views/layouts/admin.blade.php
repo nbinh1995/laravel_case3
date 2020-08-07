@@ -10,8 +10,8 @@
   <link rel="icon" href="images/favicon.ico" type="image/ico" />
 
   <title> Dashboard | @yield('title', 'Home Page')</title>
-  <!-- Fonts -->
-
+  <!-- Spinner js -->
+  <script src="{{asset('js/spinner.js')}}"></script>
   <!-- Fonts Awesome -->
   {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" /> --}}
   <link href="{{ asset('/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
@@ -23,6 +23,7 @@
 </head>
 
 <body class="nav-md">
+  @include("partials.spinner")
   <div class="container body">
     <div class="main_container">
       <div class="col-md-3 left_col">

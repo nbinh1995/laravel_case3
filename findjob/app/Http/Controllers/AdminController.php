@@ -11,23 +11,23 @@ use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
-    protected $user;
-    protected $job;
-    protected $company;
+    protected $userRepository;
+    protected $jobRepository;
+    protected $companyRepository;
     /**
      * Create a new controller instance.
      *
      * @return void
      */
     public function __construct(
-        UserRepositoryInterface $user,
-        JobRepositoryInterface $job,
-        CompanyRepositoryInterface $company
+        UserRepositoryInterface $userRepository,
+        JobRepositoryInterface $jobRepository,
+        CompanyRepositoryInterface $companyRepository
     ) {
         $this->middleware('auth');
-        $this->user = $user;
-        $this->job = $job;
-        $this->company = $company;
+        $this->userRepository = $userRepository;
+        $this->jobRepository = $jobRepository;
+        $this->companyRepository = $companyRepository;
     }
 
     public function index()

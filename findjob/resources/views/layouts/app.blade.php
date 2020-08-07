@@ -7,10 +7,15 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
     <title>{{ config('app.name', 'Laravel') }}</title>
+
+    <!-- Spinner js -->
+    <script src="{{asset('js/spinner.js')}}"></script>
     <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    {{-- <link rel="dns-prefetch" href="//fonts.gstatic.com"> --}}
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <!-- Fonts Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" />
@@ -21,6 +26,7 @@
 </head>
 
 <body>
+    @include("partials.spinner")
     <div id="app">
         <header class="container-fluid shadow-sm header">
             <div class="row">
@@ -42,14 +48,20 @@
                                         <a class="nav-link" href="{{route('home')}}">{{ __('Trang Chủ') }}</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{route('listJobs')}}">{{ __('Việc Làm') }}</a>
+                                        <a class="nav-link" href="{{route('jobs.list')}}">{{ __('Việc Làm') }}</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{route('listCompanies')}}">{{ __('Nhà Tuyển Dụng') }}</a>
+                                        <a class="nav-link"
+                                            href="{{route('companies.list')}}">{{ __('Nhà Tuyển Dụng') }}</a>
                                     </li>
+                                    @auth
+                                    @if (Auth::user()->role == 1)
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{route('home')}}">{{ __('Ứng Viên') }}</a>
+                                        <a class="nav-link"
+                                            href="{{route('companies.candidates',['id',Auth::user()->id])}}">{{ __('Ứng Viên') }}</a>
                                     </li>
+                                    @endif
+                                    @endauth
                                 </ul>
 
                                 <!-- Right Side Of Navbar -->
@@ -72,16 +84,51 @@
                                         </a>
 
                                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item" href="{{ route('logout') }}"
-                                                onclick="event.preventDefault();
-                                                                                                                             document.getElementById('logout-form').submit();">
-                                                {{ __('Đăng Xuất') }}
-                                            </a>
-
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                                style="display: none;">
-                                                @csrf
-                                            </form>
+                                            <div class="container">
+                                                <div class="row justify-content-between align-items-center">
+                                                    @switch(Auth::user()->role)
+                                                    @case(1)
+                                                    <div class="col-9">
+                                                        <a class="dropdown-item"
+                                                            href="{{ route('companies.show',['id',Auth::user()->id]) }}">{{ __('Nhà tuyển dụng') }}</a>
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <i class="fas fa-building"></i>
+                                                    </div>
+                                                    @break
+                                                    @case(2)
+                                                    <div class="col-9">
+                                                        <a class="dropdown-item"
+                                                            href="{{ route('dashboard') }}">{{ __('Dashboard') }}</a>
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <i class="fab fa-ubuntu"></i>
+                                                    </div>
+                                                    @break
+                                                    @default
+                                                    <div class="col-9">
+                                                        <a class="dropdown-item"
+                                                            href="{{ route('jobs.show',['id',Auth::user()->id]) }}">{{ __('Ứng viên') }}</a>
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <i class="fas fa-user"></i>
+                                                    </div>
+                                                    @endswitch
+                                                    <div class="col-9">
+                                                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                                document.getElementById('logout-form').submit();">
+                                                            {{ ('Đăng Xuất') }}
+                                                        </a>
+                                                        <form id="logout-form" action="{{ route('logout') }}"
+                                                            method="POST" style="display: none;">
+                                                            @csrf
+                                                        </form>
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <i class="fas fa-sign-out-alt"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </li>
                                     @endguest
@@ -92,7 +139,7 @@
                 </div>
             </div>
             <div class="box-search">
-                    @yield('search')
+                @yield('search')
             </div>
         </header>
 

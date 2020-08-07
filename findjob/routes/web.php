@@ -14,11 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('/jobs', 'HomeController@jobs')->name('listJobs');
-Route::get('/companies', 'HomeController@companies')->name('listCompanies');
-Route::get('/candidates', 'HomeController@candidates')->name('listCandidate');
+Route::get('/profiles/{id}', 'HomeController@candidates')->name('profiles.show');
 
 Route::group(['prefix' => 'dashboard'], function () {
     Route::get('/', 'AdminController@index')->name('dashboard');
@@ -26,3 +25,15 @@ Route::group(['prefix' => 'dashboard'], function () {
     Route::get('/jobs', 'AdminController@jobs')->name('dashboard.jobs');
     Route::get('/companies', 'AdminController@companies')->name('dashboard.companies');
 });
+
+Route::group(['prefix' => 'jobs'], function () {
+    Route::get('/', 'HomeController@jobs')->name('jobs.list');
+    Route::get('/{id}/show', 'HomeController@jobs')->name('jobs.show');
+});
+
+Route::group(['prefix' => 'companies'], function () {
+    Route::get('/', 'HomeController@companies')->name('companies.list');
+    Route::get('/{id}/show', 'HomeController@jobs')->name('companies.show');
+    Route::get('/{id}/candidates', 'HomeController@candidates')->name('companies.candidates');
+});
+

@@ -8,11 +8,11 @@ use Illuminate\Http\Request;
 
 class JobController extends Controller
 {
-    protected $repository;
+    protected $jobRepository;
 
-    public function __construct(JobRepositoryInterface $repository)
+    public function __construct(JobRepositoryInterface $jobRepository)
     {
-        $this->repository = $repository;
+        $this->jobRepository = $jobRepository;
     }
     /**
      * Display a listing of the resource.

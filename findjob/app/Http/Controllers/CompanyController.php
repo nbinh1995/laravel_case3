@@ -9,11 +9,11 @@ use Illuminate\Http\Request;
 class CompanyController extends Controller
 {
 
-    protected $repository;
+    protected $companyRepository;
 
-    public function __construct(CompanyRepositoryInterface $repository)
+    public function __construct(CompanyRepositoryInterface $companyRepository)
     {
-        $this->repository = $repository;
+        $this->companyRepository = $companyRepository;
     }
     /**
      * Display a listing of the resource.

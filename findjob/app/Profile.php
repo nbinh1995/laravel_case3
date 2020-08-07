@@ -15,6 +15,11 @@ class Profile extends Model
         return $this->hasOne(User::class, 'user_id', 'id');
     }
 
+    public function applicants()
+    {
+        return $this->hasMany(Applicant::class, 'profile_id', 'id');
+    }
+
     public function format()
     {
         return [
@@ -25,12 +30,12 @@ class Profile extends Model
         ];
     }
 
-    // public static function boot()
-    // {
-    //     parent::boot();
+    public static function boot()
+    {
+        parent::boot();
 
-    //     static::deleting(function ($profile) { // before delete() method call this
-    //         $profile->profile()->delete;
-    //     });
-    // }
+        static::deleting(function ($profile) { // before delete() method call this
+            $profile->applicants()->delete;
+        });
+    }
 }

@@ -20,16 +20,6 @@ class Company extends Model
         return $this->hasMany(Job::class, 'company_id', 'id');
     }
 
-    public function format()
-    {
-        return [
-            'customer_id' => $this->id,
-            'name' => $this->name,
-            'created_by' => $this->user->email,
-            'last_updated' => $this->updated_at->diffForHumans(),
-        ];
-    }
-
     public function getRouteKeyName()
     {
         return $this->slug;

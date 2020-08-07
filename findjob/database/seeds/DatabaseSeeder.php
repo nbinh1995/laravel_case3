@@ -1,7 +1,9 @@
 <?php
 
+use App\Applicant;
 use App\Category;
 use App\Company;
+use App\Favorite;
 use App\Job;
 use App\User;
 use Illuminate\Database\Seeder;
@@ -22,5 +24,7 @@ class DatabaseSeeder extends Seeder
         factory(User::class, 20)->create();
         factory(Company::class, 20)->create();
         factory(Job::class, 20)->create();
+        factory(Favorite::class, 20)->create();
+        // factory(Applicant::class, 20)->create();
     }
 }

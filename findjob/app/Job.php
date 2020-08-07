@@ -20,9 +20,14 @@ class Job extends Model
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 
-    public function users()
+    public function applicants()
     {
-        return $this->belongsToMany(User::class, 'job_user', 'user_id', 'job_id');
+        return $this->hasMany(Applicant::class, 'job_id', 'id');
+    }
+
+    public function favorites()
+    {
+        return $this->hasMany(Favorite::class, 'job_id', 'id');
     }
 
     public function format()
@@ -40,12 +45,13 @@ class Job extends Model
         return $this->slug;
     }
 
-    // public static function boot()
-    // {
-    //     parent::boot();
+    public static function boot()
+    {
+        parent::boot();
 
-    //     static::deleting(function ($job) { // before delete() method call this
-    //         $job->jobs()->delete;
-    //     });
-    // }
+        static::deleting(function ($job) { // before delete() method call this
+            $job->applicants()->delete;
+            $job->favorites()->delete;
+        });
+    }
 }

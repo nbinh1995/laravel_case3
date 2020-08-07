@@ -8,11 +8,11 @@ use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
-    protected $repository;
+    protected $profileRepository;
 
-    public function __construct(ProfileRepositoryInterface $repository)
+    public function __construct(ProfileRepositoryInterface $profileRepository)
     {
-        $this->repository = $repository;
+        $this->profileRepository = $profileRepository;
     }
     /**
      * Display a listing of the resource.
