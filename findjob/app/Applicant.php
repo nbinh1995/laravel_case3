@@ -10,9 +10,9 @@ class Applicant extends Model
     use SoftDeletes;
     protected $guarded = [];
 
-    public function job()
+    public function work()
     {
-        return $this->belongsTo(Job::class, 'job_id', 'id');
+        return $this->belongsTo(Work::class, 'work_id', 'id');
     }
 
     public function profile()

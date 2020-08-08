@@ -16,12 +16,12 @@ class CreateApplicantsTable extends Migration
         Schema::disableForeignKeyConstraints();
         Schema::create('applicants', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('job_id')->unsigned();
+            $table->bigInteger('work_id')->unsigned();
             $table->bigInteger('profile_id')->unsigned();
             $table->softDeletes();
             $table->timestamps();
             $table->foreign('profile_id')->references('id')->on('profiles')->onDelete('cascade');
-            $table->foreign('job_id')->references('id')->on('jobs')->onDelete('cascade');
+            $table->foreign('work_id')->references('id')->on('works')->onDelete('cascade');
         });
         Schema::enableForeignKeyConstraints();
     }

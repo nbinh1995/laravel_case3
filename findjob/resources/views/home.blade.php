@@ -65,7 +65,7 @@
             <h3>Việc Làm Nổi Bật Nổi Bật</h3>
             <hr>
             <div class="row justify-content-center">
-                @forelse ($jobs as $item)
+                @forelse ($works as $item)
                 <div class="col-md-3">
                     <div class="card cursor">
                         <div class="box-company">

@@ -15,9 +15,9 @@ class Company extends Model
         return $this->hasOne(User::class, 'user_id', 'id');
     }
 
-    public function jobs()
+    public function works()
     {
-        return $this->hasMany(Job::class, 'company_id', 'id');
+        return $this->hasMany(Work::class, 'company_id', 'id');
     }
 
     public function getRouteKeyName()
@@ -30,7 +30,7 @@ class Company extends Model
         parent::boot();
 
         static::deleting(function ($company) { // before delete() method call this
-            $company->jobs()->delete;
+            $company->works()->delete;
         });
     }
 }

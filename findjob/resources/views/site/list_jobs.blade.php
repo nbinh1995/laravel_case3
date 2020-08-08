@@ -40,11 +40,11 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h3>{{$jobs->total()}} Việc Làm Cho Bạn</h3>
+            <h3>{{$works->total()}} Việc Làm Cho Bạn</h3>
             <hr>
         </div>
         <div class="col-md-8 mt-3">
-            @forelse ($jobs as $item)
+            @forelse ($works as $item)
             <div class="media mb-5 shadow-sm bg-white cursor">
                 <div class="box-company">
                     <img src="{{$item->company->logo}}" class="align-self-start mr-3" style="width:100px">
@@ -97,7 +97,7 @@
         </div>
         <div class="col-md-12">
             <div class="row justify-content-center">
-                {{ $jobs->appends(request()->query()) }}
+                {{ $works->appends(request()->query()) }}
             </div>
         </div>
     </div>

@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Repositories\JobRepositoryInterface;
-use App\Job;
+use App\Http\Repositories\WorkRepositoryInterface;
+use App\Work;
 use Illuminate\Http\Request;
 
-class JobController extends Controller
+class WorkController extends Controller
 {
-    protected $jobRepository;
+    protected $workRepository;
 
-    public function __construct(JobRepositoryInterface $jobRepository)
+    public function __construct(WorkRepositoryInterface $workRepository)
     {
-        $this->jobRepository = $jobRepository;
+        $this->workRepository = $workRepository;
     }
     /**
      * Display a listing of the resource.
@@ -48,10 +48,10 @@ class JobController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Job  $job
+     * @param  \App\Work  $work
      * @return \Illuminate\Http\Response
      */
-    public function show(Job $job)
+    public function show(Work $work)
     {
         //
     }
@@ -59,10 +59,10 @@ class JobController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Job  $job
+     * @param  \App\Work  $work
      * @return \Illuminate\Http\Response
      */
-    public function edit(Job $job)
+    public function edit(Work $work)
     {
         //
     }
@@ -71,10 +71,10 @@ class JobController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Job  $job
+     * @param  \App\Work  $work
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Job $job)
+    public function update(Request $request, Work $work)
     {
         //
     }
@@ -82,10 +82,10 @@ class JobController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Job  $job
+     * @param  \App\Work  $work
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Job $job)
+    public function destroy(Work $work)
     {
         //
     }

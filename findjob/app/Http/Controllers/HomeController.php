@@ -3,16 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Http\Repositories\CompanyRepositoryInterface;
-use App\Http\Repositories\JobRepositoryInterface;
 use Illuminate\Http\Request;
-use App\Company;
+use App\Http\Repositories\WorkRepositoryInterface;
 
 class HomeController extends Controller
 {
-    const AmountJobs = 6;
+    const AmountWorks = 6;
     const AmountCompanies = 8;
 
-    protected $jobRepository;
+    protected $workRepository;
     protected $companyRepository;
     /**
      * Create a new controller instance.
@@ -20,28 +19,28 @@ class HomeController extends Controller
      * @return void
      */
     public function __construct(
-        JobRepositoryInterface $jobRepository,
+        WorkRepositoryInterface $workRepository,
         CompanyRepositoryInterface $companyRepository
     ) {
-        $this->jobRepository = $jobRepository;
+        $this->workRepository = $workRepository;
         $this->companyRepository = $companyRepository;
     }
 
     public function index()
     {
-        $jobs = $this->jobRepository->isHotJobs()
-                                    ->take(4)
-                                    ->get();
+        $works = $this->workRepository->isHotWorks()
+            ->take(4)
+            ->get();
         $companies = $this->companyRepository->isHotCompanies()
-                                             ->take(5)
-                                             ->get(['cover_photo','logo']);
-        return view('home', compact('jobs', 'companies'));
+            ->take(5)
+            ->get(['cover_photo', 'logo']);
+        return view('home', compact('works', 'companies'));
     }
 
     public function jobs()
     {
-        $jobs = $this->jobRepository->paginate(self::AmountJobs);
-        return view('site.list_jobs', compact('jobs'));
+        $works = $this->workRepository->paginate(self::AmountWorks);
+        return view('site.list_jobs', compact('works'));
     }
 
     public function companies()

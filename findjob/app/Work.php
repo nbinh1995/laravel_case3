@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Job extends Model
+class Work extends Model
 {
     use SoftDeletes;
     protected $guarded = [];
@@ -22,12 +22,12 @@ class Job extends Model
 
     public function applicants()
     {
-        return $this->hasMany(Applicant::class, 'job_id', 'id');
+        return $this->hasMany(Applicant::class, 'work_id', 'id');
     }
 
     public function favorites()
     {
-        return $this->hasMany(Favorite::class, 'job_id', 'id');
+        return $this->hasMany(Favorite::class, 'work_id', 'id');
     }
 
     public function format()
@@ -49,9 +49,9 @@ class Job extends Model
     {
         parent::boot();
 
-        static::deleting(function ($job) { // before delete() method call this
-            $job->applicants()->delete;
-            $job->favorites()->delete;
+        static::deleting(function ($work) { // before delete() method call this
+            $work->applicants()->delete;
+            $work->favorites()->delete;
         });
     }
 }

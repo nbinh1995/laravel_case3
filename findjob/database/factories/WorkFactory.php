@@ -2,17 +2,14 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Category;
 use App\Company;
-use App\Job;
-use App\User;
-use Faker\Generator as Faker;
+use App\Work;
 use Illuminate\Support\Str;
+use Faker\Generator as Faker;
 
-$factory->define(Job::class, function (Faker $faker) {
+$factory->define(Work::class, function (Faker $faker) {
     $type = ['FullTime', 'PartTime'];
     return [
-        // 'user_id' => User::all()->random()->id,
         'company_id' => Company::all()->random()->id,
         'category_id' => rand(1, 2),
         'title' => $name = $faker->sentence,

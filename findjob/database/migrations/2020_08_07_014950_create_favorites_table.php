@@ -16,12 +16,12 @@ class CreateFavoritesTable extends Migration
         Schema::disableForeignKeyConstraints();
         Schema::create('favorites', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('job_id')->unsigned();
+            $table->bigInteger('work_id')->unsigned();
             $table->bigInteger('user_id')->unsigned();
             $table->softDeletes();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('job_id')->references('id')->on('jobs')->onDelete('cascade');
+            $table->foreign('work_id')->references('id')->on('works')->onDelete('cascade');
         });
         Schema::enableForeignKeyConstraints();
     }
@@ -35,6 +35,6 @@ class CreateFavoritesTable extends Migration
     {
         Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('favorites');
-          Schema::enableForeignKeyConstraints();
+        Schema::enableForeignKeyConstraints();
     }
 }

@@ -2,7 +2,6 @@
 
 namespace App\Http\Repositories;
 
-use App\Job;
 use Illuminate\Support\Collection;
 
 class EloquentRepository implements RepositoryInterface
@@ -40,7 +39,7 @@ class EloquentRepository implements RepositoryInterface
     public function destroy($id)
     {
         $model = $this->find($id);
-        
+
         return $model->delete();
     }
 }

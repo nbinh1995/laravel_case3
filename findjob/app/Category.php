@@ -10,9 +10,9 @@ class Category extends Model
     use SoftDeletes;
     protected $guarded = [];
 
-    public function jobs()
+    public function works()
     {
-        return $this->hasMany(Job::class, 'category_id', 'id');
+        return $this->hasMany(Work::class, 'category_id', 'id');
     }
 
     public static function boot()
@@ -20,7 +20,7 @@ class Category extends Model
         parent::boot();
 
         static::deleting(function ($category) { // before delete() method call this
-            $category->jobs()->delete;
+            $category->works()->delete;
         });
     }
 }

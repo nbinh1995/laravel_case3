@@ -54,7 +54,7 @@
                     <p class="card-text line-clamp">{{$item->description}}</p>
                 </div>
                 <div class="card-footer text-center">
-                    <small class="text-primary">{{$item->jobs->count()}} việc làm đang tuyển</small>
+                    <small class="text-primary">{{$item->works->count()}} việc làm đang tuyển</small>
                 </div>
             </div>
         </div>
