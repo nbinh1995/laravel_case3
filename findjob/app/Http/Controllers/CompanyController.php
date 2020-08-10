@@ -74,10 +74,17 @@ class CompanyController extends Controller
      * @param  \App\Company  $company
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Company $company)
+    public function update(CompanyRequest $request, Company $company)
     {
-
-        $this->companyRepository->update($company, $request);
+        $data = $this->companyRepository->update($company, $request);
+        // $job_company = view('partials.job_company')->render();
+        $image_company = view('partials.image_company', ['company' => $data])->render();
+        $info_company = view('partials.info_company', ['company' => $data])->render();
+        return response()->json([
+            'code' => 200,
+            'image_company' => $image_company,
+            'info_company' => $info_company
+        ], 200);
     }
 
     /**

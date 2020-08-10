@@ -26,6 +26,7 @@
         </div>
     </div>
 </div>
+@auth
 @if(Auth::user()->id == $company->user_id)
 <div class="card-footer">
     <div class="row justify-content-end">
@@ -55,6 +56,9 @@
                                 <label for="logo" style="cursor: pointer"><img src="{{$company->logo}}" alt=""
                                         id="imgLogo" style="width:150px;height=150px"></label>
                                 <input type="file" name="logo" id="logo" onchange="company.uploadLogo(this)" hidden>
+                                <span class="text-danger" role="alert">
+                                    <strong id="err-logo"></strong>
+                                </span>
                             </div>
                             <div class="col-md-8">
                                 <h5>Cover Photo</h5>
@@ -62,39 +66,60 @@
                                         id="imgCover"></label>
                                 <input type="file" name="cover_photo" id="cover_photo"
                                     onchange="company.uploadCover(this)" hidden>
+                                <span class="text-danger" role="alert">
+                                    <strong id="err-photo"></strong>
+                                </span>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="c_name">Tên Công Ty</label>
                             <input type="text" class="form-control" value="{{$company->c_name}}" name="c_name"
                                 id="c_name" placeholder="Tên Công Ty...">
+                            <span class="text-danger" role="alert">
+                                <strong id="err-name"></strong>
+                            </span>
                         </div>
                         <div class="form-group">
                             <label for="address">Địa Chỉ</label>
                             <input type="text" class="form-control" value="{{$company->address}}" name="address"
                                 id="address" placeholder="địa chỉ...">
+                            <span class="text-danger" role="alert">
+                                <strong id="err-address"></strong>
+                            </span>
                         </div>
                         <div class="form-group row">
                             <div class="col-md-6">
                                 <label for="phone">Điện Thoại</label>
                                 <input type="tel" class="form-control" value="{{$company->phone}}" name="phone"
                                     id="phone" placeholder="số điện thoại ...">
+                                <span class='text-danger' role="alert">
+                                    <strong id="err-phone"></strong>
+                                </span>
                             </div>
                             <div class="col-md-6">
                                 <label for="website">Website</label>
-                                <input type="tel" class="form-control" value="{{$company->website}}" name="website"
+                                <input type="text" class="form-control" value="{{$company->website}}" name="website"
                                     id="website" placeholder="website...">
+                                <span class="text-danger" role="alert">
+                                    <strong id="err-website"></strong>
+                                </span>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="slogan">Slogan</label>
                             <input type="text" class="form-control" value="{{$company->slogan}}" name="slogan"
                                 id="slogan" placeholder="slogan...">
+                            <span class="text-danger" role="alert">
+                                <strong id="slogan"></strong>
+                            </span>
                         </div>
                         <div class="form-group">
                             <label for="description">Description</label>
                             <textarea class="form-control" name="description" id="description"
                                 placeholder="giới thiệu công ty...">{{$company->description}}</textarea>
+                            <span class="text-danger" role="alert">
+                                <strong id="err-desc"></strong>
+                            </span>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -107,3 +132,4 @@
     </div>
 </div>
 @endif
+@endauth

@@ -2,6 +2,7 @@
 
 namespace App\Http\Repositories;
 
+use Illuminate\Support\Str;
 use App\Company;
 
 class CompanyRepository extends EloquentRepository implements CompanyRepositoryInterface
@@ -26,16 +27,21 @@ class CompanyRepository extends EloquentRepository implements CompanyRepositoryI
     public function update($id, $data)
     {
         $id->update($data->except('logo', 'cover_photo'));
+        $id->slug = Str::slug($data->c_name);
         if ($data->hasFile('logo') && $data->file('logo')->isValid()) {
+            unlink(public_path($id->logo));
             $imagePath = $data->file('logo');
             $path = $imagePath->store('avatar', 'public');
             $id->logo = '/storage/' . $path;
         }
+
         if ($data->hasFile('cover_photo') && $data->file('cover_photo')->isValid()) {
+            unlink(public_path($id->cover_photo));
             $imagePath = $data->file('cover_photo');
             $path = $imagePath->store('cover', 'public');
             $id->cover_photo = '/storage/' . $path;
         }
-        return $id->save();
+        $id->save();
+        return $id;
     }
 }

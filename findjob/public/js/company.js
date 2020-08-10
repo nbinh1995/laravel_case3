@@ -1,22 +1,30 @@
 var company = company || {};
 
-company.showImage = function (image) {
-
-};
-
-company.showJob = function (job) {
-
+company.showErrors = function (errors) {
+    if (errors['logo'] != null) {
+        $('#err-logo').text(errors['logo'][0]);
+    }
+    if (errors['cover_photo'] != null) {
+        $('#err-photo').text(errors['cover_photo'][0]);
+    }
+    if (errors['c_name'] != null) {
+        $('#err-name').text(errors['c_name'][0]);
+    }
+    if (errors['address'] != null) {
+        $('#err-address').text(errors['address'][0]);
+    }
+    if (errors['phone'] != null) {
+        $('#err-phone').text(errors['phone'][0]);
+    }
+    if (errors['website'] != null) {
+        $('#err-website').text(errors['website'][0]);
+    }
+    if (errors['description'] != null) {
+        $('#err-desc').text(errors['description'][0]);
+    }
 }
 
-company.showCompany = function (info) { }
 company.update = function (ele) {
-    // $.ajaxSetup({
-    //     headers: {
-    //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-    //         '_method': 'PUT'
-    //     }
-    // });
-
     let data = new FormData(ele);
     let url = $(ele).attr('action');
     $.ajax({
@@ -27,7 +35,19 @@ company.update = function (ele) {
         cache: false,
         processData: false,
         success: function (data) {
-
+            if (data['code'] == 200) {
+                $('#updateModal').modal('hide');
+                $('body').removeClass('modal-open');
+                $('.modal-backdrop').remove();
+                $('#image-company').html(data['image_company']);
+                $('#menu1').html(data['info_company']);
+                toastr.options = { "positionClass": "toast-bottom-right" };
+                toastr["success"]("Cập Nhật Thông Tin Thành Công!");
+            }
+            if (data['code'] == 422) {
+                console.log(data['errors']['website']);
+                company.showErrors(data['errors'])
+            }
         }
     });
 }

@@ -29,9 +29,11 @@ class CompanyRequest extends FormRequest
         return [
             'logo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5000',
             'cover_photo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5000',
-            'c_name' => 'string|max:255',
-            'phone' => 'regex:/^0[0-9]{9,10}$/',
-            'website' => 'url'
+            'c_name' => 'required|string|max:255',
+            'address' => 'required',
+            'phone' => 'required|regex:/^0[0-9]{9,10}$/',
+            'website' => 'regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/',
+            'description' => 'required'
         ];
     }
 
@@ -41,12 +43,16 @@ class CompanyRequest extends FormRequest
             'logo.image' => 'Logo là 1 file ảnh',
             'logo.mimes' => 'Logo phải là định dạng jpeg,png,jpg,gif,svg',
             'logo.max' => 'Logo phải dưới 5000kb',
-            'cover_photo.image' => 'Cover là 1 file ảnh',
-            'cover_photo.mimes' => 'Cover phải là định dạng jpeg,png,jpg,gif,svg',
-            'cover_photo.max' => 'Cover phải dưới 5000kb',
+            'cover_photo.image' => 'Cover_photo là 1 file ảnh',
+            'cover_photo.mimes' => 'Ảnh cover_photo phải là định dạng jpeg,png,jpg,gif,svg',
+            'cover_photo.max' => 'Ảnh cover_photo phải dưới 5000kb',
+            'c_name.required' => ' Tên công ty không được để trống',
             'c_name.max' => 'Tên công ty không được quá 255 kí tự',
-            'phone.regex' => 'Đây không phải số điện thoại',
-            'website.url' => 'Đây không phải một url'
+            'address.required' => 'Địa chỉ công ty không được để trống',
+            'phone.required' => 'Số điện thoại không được bỏ trống',
+            'phone.regex' => 'Số điện thoại không đúng định dạng',
+            'website.regex' => 'Website không đúng định dạng',
+            'description.required' => 'Thêm mô tả công ty'
         ];
     }
 
@@ -54,13 +60,12 @@ class CompanyRequest extends FormRequest
     {
         $errors = (new ValidationException($validator))->errors();
         throw new HttpResponseException(
-
             response()->json(
                 [
-                    'error' => $errors,
-                    'status_code' => 422,
+                    'errors' => $errors,
+                    'code' => 422,
                 ],
-                // JsonResponse::HTTP_UNPROCESSABLE_ENTITY
+                200
             )
         );
     }

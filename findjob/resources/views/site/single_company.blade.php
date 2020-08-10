@@ -17,7 +17,8 @@
                             <a class="nav-link active" data-toggle="tab" href="#menu1">Thông Tin Công Ty</a>
                         </li>
                         <li class="nav-item col-md-6">
-                            <a class="nav-link" data-toggle="tab" href="#menu2">Viêc Làm</a>
+                            <a class="nav-link" data-toggle="tab" href="#menu2">
+                                <span>{{$company->works->count()}}</span> Công Việc</a>
                         </li>
                     </ul>
                 </div>
@@ -33,5 +34,6 @@
         </div>
     </div>
 </div>
+
 <script src="{{ asset('js/company.js')}}"></script>
 @endsection
