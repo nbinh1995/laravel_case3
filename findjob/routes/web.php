@@ -33,7 +33,8 @@ Route::group(['prefix' => 'jobs'], function () {
 
 Route::group(['prefix' => 'companies'], function () {
     Route::get('/', 'HomeController@companies')->name('companies.list');
-    Route::get('/{company}/show', 'HomeController@show')->name('companies.show');
+    Route::get('/{company}/show', 'HomeController@showCompany')->name('companies.show');
     Route::get('/{company}/edit', 'CompanyController@edit')->name('companies.edit');
+    Route::put('/{company}/update', 'CompanyController@update')->name('companies.update');
     Route::get('/{company}/candidates', 'CompanyController@candidates')->name('companies.candidates');
 });

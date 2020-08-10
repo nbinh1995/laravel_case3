@@ -3,7 +3,6 @@
 let previousScroll = 0;
 $(window).scroll(function (e) {
     let currentScroll = $(window).scrollTop();
-    console.log(currentScroll);
     if (currentScroll < 90) {
         $('.navbar').removeClass("menu-hide");
     } else {

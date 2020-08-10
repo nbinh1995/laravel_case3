@@ -22,4 +22,20 @@ class CompanyRepository extends EloquentRepository implements CompanyRepositoryI
     {
         return $this->model::where('hot', 1);
     }
+
+    public function update($id, $data)
+    {
+        $id->update($data->except('logo', 'cover_photo'));
+        if ($data->hasFile('logo') && $data->file('logo')->isValid()) {
+            $imagePath = $data->file('logo');
+            $path = $imagePath->store('avatar', 'public');
+            $id->logo = '/storage/' . $path;
+        }
+        if ($data->hasFile('cover_photo') && $data->file('cover_photo')->isValid()) {
+            $imagePath = $data->file('cover_photo');
+            $path = $imagePath->store('cover', 'public');
+            $id->cover_photo = '/storage/' . $path;
+        }
+        return $id->save();
+    }
 }

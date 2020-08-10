@@ -1,3 +1,4 @@
+// spinner load page
 document.onreadystatechange = function () {
     if (document.readyState !== "complete") {
         // document.querySelector("body").style.visibility = "hidden";
@@ -8,15 +9,15 @@ document.onreadystatechange = function () {
     }
 };
 
-$(document).on({
-    ajaxStart: function () {
-        $("#spinner").show();
-    },
-    ajaxStop: function () {
-        $("#spinner").hide();
-    },
-    ajaxError: function () {
-        $("#spinner").hide();
-    }
-});
+// $(document).on({
+//     ajaxStart: function () {
+//         $("#spinner").show();
+//     },
+//     ajaxStop: function () {
+//         $("#spinner").hide();
+//     },
+//     ajaxError: function () {
+//         $("#spinner").hide();
+//     }
+// });
 

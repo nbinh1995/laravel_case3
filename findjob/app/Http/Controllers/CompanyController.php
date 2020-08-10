@@ -62,10 +62,8 @@ class CompanyController extends Controller
      */
     public function edit(Company $company)
     {
-        $auth = false;
         if (Auth::user()->id == $company->user_id) {
-            $auth = true;
-            return view('site.single_company', compact('company', 'auth'));
+            return view('site.single_company', compact('company'));
         } else return redirect()->route('companies.show', compact('company'));
     }
 
@@ -76,10 +74,10 @@ class CompanyController extends Controller
      * @param  \App\Company  $company
      * @return \Illuminate\Http\Response
      */
-    public function update(CompanyRequest $request, $id)
+    public function update(Request $request, Company $company)
     {
-         $this->companyRepository->update($id,$request);
-         
+
+        $this->companyRepository->update($company, $request);
     }
 
     /**

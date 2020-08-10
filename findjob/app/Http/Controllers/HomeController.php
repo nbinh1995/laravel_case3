@@ -50,7 +50,7 @@ class HomeController extends Controller
         return view('site.list_companies', compact('companies'));
     }
 
-    public function show(Company $company)
+    public function showCompany(Company $company)
     {
         return view('site.single_company', compact('company'));
     }
