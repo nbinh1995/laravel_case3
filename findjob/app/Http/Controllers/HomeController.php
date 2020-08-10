@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Company;
 use App\Http\Repositories\CompanyRepositoryInterface;
 use Illuminate\Http\Request;
 use App\Http\Repositories\WorkRepositoryInterface;
@@ -33,7 +34,7 @@ class HomeController extends Controller
             ->get();
         $companies = $this->companyRepository->isHotCompanies()
             ->take(5)
-            ->get(['cover_photo', 'logo']);
+            ->get();
         return view('home', compact('works', 'companies'));
     }
 
@@ -47,5 +48,10 @@ class HomeController extends Controller
     {
         $companies = $this->companyRepository->paginate(self::AmountCompanies);
         return view('site.list_companies', compact('companies'));
+    }
+
+    public function show(Company $company)
+    {
+        return view('site.single_company', compact('company'));
     }
 }

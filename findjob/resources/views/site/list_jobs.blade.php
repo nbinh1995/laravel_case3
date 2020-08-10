@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('search')
-<div class="container">
+<div class="container pt-5">
     <div class="row">
         <div class="col-md-12">
             <h2 class="bg-title">Kết Nối Nguồn Nhân Lực</h2>
@@ -45,44 +45,48 @@
         </div>
         <div class="col-md-8 mt-3">
             @forelse ($works as $item)
-            <div class="media mb-5 shadow-sm bg-white cursor">
-                <div class="box-company">
-                    <img src="{{$item->company->logo}}" class="align-self-start mr-3" style="width:100px">
-                </div>
-                <div class="media-body">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-9">
+            <div class="mb-5 shadow-sm bg-white cursor">
+                <a href="{{ route('jobs.show',['job'=> $item]) }}">
+                    <div class="media">
+                        <div class="box-company">
+                            <img src="{{$item->company->logo}}" class="align-self-start mr-3" style="width:100px">
+                        </div>
+                        <div class="media-body">
+                            <div class="container">
                                 <div class="row">
-                                    <div class="col-md-12">
-                                        <h5 class="text-uppercase">{{$item->position}}</h5>
+                                    <div class="col-md-9">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <h5 class="text-uppercase">{{$item->position}}</h5>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <i class="far fa-building"></i> {{$item->company->c_name}}
+                                            </div>
+                                            <div class="col-md-12">
+                                                <i class="fas fa-map-marker-alt"></i> {{$item->address}}
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="col-md-12">
-                                        <i class="far fa-building"></i> {{$item->company->c_name}}
-                                    </div>
-                                    <div class="col-md-12">
-                                        <i class="fas fa-map-marker-alt"></i> {{$item->address}}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="row justify-content-end align-items-center">
-                                    <div class="col-md-12 mb-2">
-                                        <span
-                                            class='create-box'>{{$item->created_at->locale('vi')->diffForHumans()}}</span>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <i class="far fa-calendar-alt"></i>
-                                        {{date('d/m/Y', strtotime($item->last_date))}}
-                                    </div>
-                                    <div class="col-md-12 mb-2">
-                                        <button class="btn btn-success btn-sm">Apply</button>
+                                    <div class="col-md-3">
+                                        <div class="row justify-content-end align-items-center">
+                                            <div class="col-md-12 mb-2">
+                                                <span
+                                                    class='create-box'>{{$item->created_at->locale('vi')->diffForHumans()}}</span>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <i class="far fa-calendar-alt"></i>
+                                                {{date('d/m/Y', strtotime($item->last_date))}}
+                                            </div>
+                                            <div class="col-md-12 mb-2">
+                                                <button class="btn btn-success btn-sm">Apply</button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
             @empty
 

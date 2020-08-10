@@ -5,7 +5,9 @@
     /* font-family: "Spinnaker", sans-serif; */
     font-family: "Roboto", sans-serif;
 }
-
+html {
+    background-color: #18b5c6;
+}
 /*========
   header
 ========*/
@@ -14,27 +16,77 @@
 }
 .menu {
     opacity: 1;
-    /* transition: opacity 1s ease-in-out; */
 }
-/* .menu-show{
-    pointer-events: none;
-    opacity: 1;
-    transition: opacity 0.5s ease-in-out;
-} */
 .menu-hide {
     pointer-events: none;
     opacity: 0;
     transition: opacity 0.5s ease-in-out;
 }
 .box-search {
-    margin-top: 100px;
+    margin-top: 90px;
+}
+/* single_company */
+.banner {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+}
+.labelCover {
+    position: relative;
+    width: 300px;
+    height: 150px;
+    overflow: hidden;
+    cursor: pointer;
+}
+.labelCover img {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.banner .img-middle {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.search-bot {
+    position: relative;
+}
+.box-logo {
+    display: inline-block;
+    position: absolute;
+    left: 50px;
+    top: -50px;
+    background-color: white;
+}
+.logo {
+    position: relative;
+}
+.logo label {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+}
+.logo img {
+    width: 100px;
+    height: 100px;
 }
 /*========
   main
 ========*/
+/* home/list_jobs,list_company */
 .cursor {
     cursor: pointer;
     overflow: hidden;
+}
+.cursor a {
+    color: black;
+}
+.cursor:hover a {
+    text-decoration: none;
 }
 .cursor:hover img {
     transform: scale(1.1);

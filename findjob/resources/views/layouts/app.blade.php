@@ -25,6 +25,7 @@
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 </head>
 
+
 <body>
     @include("partials.spinner")
     <div id="app">
@@ -34,7 +35,7 @@
                     <nav class="navbar fixed-top navbar-expand-md navbar-light bg-white">
                         <div class="container">
                             <a class="navbar-brand" href="{{ url('/') }}">
-                                <img src="{{asset('/storage/avatar/logo_jobport.png')}}" alt="" width="75px">
+                                <img src="{{asset('/images/logo_jobport.png')}}" alt="" width="75px">
                             </a>
                             <button class="navbar-toggler" type="button" data-toggle="collapse"
                                 data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -58,7 +59,7 @@
                                     @if (Auth::user()->role == 1)
                                     <li class="nav-item">
                                         <a class="nav-link"
-                                            href="{{route('companies.candidates',['id',Auth::user()->id])}}">{{ __('Ứng Viên') }}</a>
+                                            href="{{route('companies.candidates',['company'=> Auth::user()->company])}}">{{ __('Ứng Viên') }}</a>
                                     </li>
                                     @endif
                                     @endauth
@@ -90,7 +91,7 @@
                                                     @case(1)
                                                     <div class="col-9">
                                                         <a class="dropdown-item"
-                                                            href="{{ route('companies.show',['id',Auth::user()->id]) }}">{{ __('Nhà tuyển dụng') }}</a>
+                                                            href="{{ route('companies.edit',['company'=> Auth::user()->company]) }}">{{ __('Nhà tuyển dụng') }}</a>
                                                     </div>
                                                     <div class="col-3">
                                                         <i class="fas fa-building"></i>
@@ -108,7 +109,7 @@
                                                     @default
                                                     <div class="col-9">
                                                         <a class="dropdown-item"
-                                                            href="{{ route('jobs.show',['id',Auth::user()->id]) }}">{{ __('Ứng viên') }}</a>
+                                                            href="{{ route('profiles.edit',['profile'=> Auth::user()->profile]) }}">{{ __('Ứng viên') }}</a>
                                                     </div>
                                                     <div class="col-3">
                                                         <i class="fas fa-user"></i>

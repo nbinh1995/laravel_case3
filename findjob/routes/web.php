@@ -15,9 +15,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('/profiles/{id}', 'HomeController@candidates')->name('profiles.show');
+Route::get('/profiles/{profile}/edit', 'HomeController@candidates')->name('profiles.edit');
 
 Route::group(['prefix' => 'dashboard'], function () {
     Route::get('/', 'AdminController@index')->name('dashboard');
@@ -28,12 +28,12 @@ Route::group(['prefix' => 'dashboard'], function () {
 
 Route::group(['prefix' => 'jobs'], function () {
     Route::get('/', 'HomeController@jobs')->name('jobs.list');
-    Route::get('/{id}/show', 'HomeController@jobs')->name('jobs.show');
+    Route::get('/{job}/show', 'WorkController@show')->name('jobs.show');
 });
 
 Route::group(['prefix' => 'companies'], function () {
     Route::get('/', 'HomeController@companies')->name('companies.list');
-    Route::get('/{id}/show', 'HomeController@jobs')->name('companies.show');
-    Route::get('/{id}/candidates', 'HomeController@candidates')->name('companies.candidates');
+    Route::get('/{company}/show', 'HomeController@show')->name('companies.show');
+    Route::get('/{company}/edit', 'CompanyController@edit')->name('companies.edit');
+    Route::get('/{company}/candidates', 'CompanyController@candidates')->name('companies.candidates');
 });
-

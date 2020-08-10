@@ -16,15 +16,15 @@ class CreateProfilesTable extends Migration
         Schema::disableForeignKeyConstraints();
         Schema::create('profiles', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id')->unsigned();
-            $table->text('address');
-            $table->string('gender');
-            $table->string('birth');
-            $table->text('exp');
-            $table->text('bio');
-            $table->text('cover_letter');
-            $table->text('resume');
-            $table->string('avatar');
+            $table->bigInteger('user_id')->unsigned()->unique();
+            $table->text('address')->nullable();
+            $table->string('gender')->nullable();
+            $table->string('birth')->nullable();
+            $table->text('exp')->nullable();
+            $table->text('bio')->nullable();
+            $table->text('cover_letter')->nullable();
+            $table->text('resume')->nullable();
+            $table->string('avatar')->nullable();
             $table->softDeletes();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

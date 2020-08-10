@@ -9,7 +9,6 @@ use Illuminate\Support\Str;
 
 $factory->define(Company::class, function (Faker $faker) {
     return [
-        'user_id' => User::all()->random()->id,
         'c_name' => $title = $faker->company,
         'slug' => Str::slug($title),
         'address' => $faker->address,

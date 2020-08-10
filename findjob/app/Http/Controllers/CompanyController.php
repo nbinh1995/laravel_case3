@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Company;
 use App\Http\Repositories\CompanyRepositoryInterface;
+use App\Http\Requests\CompanyRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CompanyController extends Controller
 {
@@ -13,6 +15,7 @@ class CompanyController extends Controller
 
     public function __construct(CompanyRepositoryInterface $companyRepository)
     {
+        $this->middleware('verified');
         $this->companyRepository = $companyRepository;
     }
     /**
@@ -23,6 +26,11 @@ class CompanyController extends Controller
     public function index()
     {
         //
+    }
+
+    public function candidates(Company $company)
+    {
+        return view('site.candidates');
     }
 
     /**
@@ -47,17 +55,6 @@ class CompanyController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Company  $company
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Company $company)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Company  $company
@@ -65,7 +62,11 @@ class CompanyController extends Controller
      */
     public function edit(Company $company)
     {
-        //
+        $auth = false;
+        if (Auth::user()->id == $company->user_id) {
+            $auth = true;
+            return view('site.single_company', compact('company', 'auth'));
+        } else return redirect()->route('companies.show', compact('company'));
     }
 
     /**
@@ -75,9 +76,10 @@ class CompanyController extends Controller
      * @param  \App\Company  $company
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Company $company)
+    public function update(CompanyRequest $request, $id)
     {
-        //
+         $this->companyRepository->update($id,$request);
+         
     }
 
     /**

@@ -22,7 +22,7 @@ class Company extends Model
 
     public function getRouteKeyName()
     {
-        return $this->slug;
+        return 'slug';
     }
 
     public static function boot()
