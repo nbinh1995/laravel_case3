@@ -3,6 +3,7 @@
 namespace App\Http\Repositories;
 
 use App\Work;
+use Illuminate\Support\Str;
 use Illuminate\Support\Collection;
 
 class WorkRepository extends EloquentRepository  implements WorkRepositoryInterface
@@ -16,11 +17,11 @@ class WorkRepository extends EloquentRepository  implements WorkRepositoryInterf
 
     public function paginate($amount)
     {
-        return $this->model::with(['company:id,c_name,logo,address', 'category:id,name'])->paginate($amount);
+        return $this->model::with(['company:id,c_name,logo,address'])->paginate($amount);
     }
 
     public function isHotWorks()
     {
-        return $this->model::where('hot', 1)->with(['company:id,c_name,cover_photo,logo', 'category:id,name']);
+        return $this->model::where('hot', 1)->with(['company:id,c_name,cover_photo,logo,address']);
     }
 }

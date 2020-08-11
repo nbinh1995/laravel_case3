@@ -22,10 +22,10 @@
                         <div class="media-body">
                             <div class="container">
                                 <div class="row">
-                                    <div class="col-md-9">
+                                    <div class="col-md-8">
                                         <div class="row">
-                                            <div class="col-md-12">
-                                                <h5 class="text-uppercase">{{$item->position}}</h5>
+                                            <div class="col-md-12 text-primary">
+                                                <h5 class="text-uppercase">{{$item->title}}</h5>
                                             </div>
                                             <div class="col-md-12">
                                                 <i class="far fa-building"></i> {{$item->company->c_name}}
@@ -35,7 +35,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-4">
                                         <div class="row justify-content-end align-items-center">
                                             <div class="col-md-12 mb-2">
                                                 <span
@@ -45,6 +45,18 @@
                                                 <i class="far fa-calendar-alt"></i>
                                                 {{date('d/m/Y', strtotime($item->last_date))}}
                                             </div>
+                                            <div class="col-md-12"><i class="fas fa-briefcase"></i> {{$item->position}}
+                                            </div>
+                                            @if ($item->address == 0)
+                                            <div class="col-md-12"><i class="fas fa-dollar-sign"></i>
+                                                {{$item->salary_number($item->salary_min)}} -
+                                                {{$item->salary_number($item->salary_max)}}
+                                            </div>
+                                            @else
+                                            <div class="col-md-12"><i class="fas fa-dollar-sign"></i>
+                                                {{__('Thương Lượng')}}
+                                            </div>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>

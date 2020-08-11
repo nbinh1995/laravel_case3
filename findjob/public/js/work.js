@@ -25,11 +25,35 @@ work.showErrors = function (errors) {
 }
 
 work.create = function (ele) {
-
+    let data = new FormData(ele);
+    let url = $(ele).attr('action');
+    $.ajax({
+        type: 'POST',
+        url: url,
+        data: data,
+        contentType: false,
+        cache: false,
+        processData: false,
+        success: function (data) {
+            console.log(data['job_company']);
+            $('#addModal2').modal('hide');
+            $('#count_work').text(data['count']);
+            $('#job_company').html(data['job_company']);
+            toastr.options = { "positionClass": "toast-bottom-right" };
+            toastr["success"]("Thêm Việc Làm Thành Công!");
+        }
+    });
 }
 
 work.edit = function (ele) {
-
+    let url = $(ele).data('url');
+    $.ajax({
+        type: 'GET',
+        url: url,
+        success: function (data) {
+            
+        }
+    });
 }
 
 work.update = function (ele) {

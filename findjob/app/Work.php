@@ -30,15 +30,23 @@ class Work extends Model
         return $this->hasMany(Favorite::class, 'work_id', 'id');
     }
 
-    public function format()
+    function salary_number($n)
     {
-        return [
-            'customer_id' => $this->id,
-            'name' => $this->name,
-            'created_by' => $this->user->email,
-            'last_updated' => $this->updated_at->diffForHumans(),
-        ];
+        // first strip any formatting;
+        $n = (0 + str_replace(",", "", $n));
+
+        // is this a number?
+        if (!is_numeric($n)) return false;
+
+        // now filter it;
+        if ($n > 1000000000000) return round(($n / 1000000000000), 1) . ' k tỷ';
+        elseif ($n > 1000000000) return round(($n / 1000000000), 1) . ' tỷ';
+        elseif ($n > 1000000) return round(($n / 1000000), 1) . ' tr';
+        elseif ($n > 1000) return round(($n / 1000), 1) . ' k';
+
+        return number_format($n);
     }
+
 
     public function getRouteKeyName()
     {

@@ -1,3 +1,12 @@
+function checkStatus() {
+    if ($('#status').is(":checked")) {
+        $('#salary_min').prop("disabled", true);
+        $('#salary_max').prop("disabled", true);
+    } else {
+        $('#salary_min').prop("disabled", false);
+        $('#salary_max').prop("disabled", false);
+    }
+}
 
 // scroll functions
 let previousScroll = 0;

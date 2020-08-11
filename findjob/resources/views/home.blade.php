@@ -46,9 +46,22 @@
                                 </div>
                             </div>
                             <div class="card-body body-company">
-                                <h5 class="card-title text-uppercase text-center">{{$item->position}}</h5>
+                                <h5 class="card-title text-primary text-uppercase text-center">{{$item->title}}</h5>
                                 <div class="card-text"><i class="far fa-building"></i> {{$item->company->c_name}}</div>
-                                <div class="card-text"><i class="fas fa-map-marker-alt"></i> {{$item->address}}</div>
+                                <div class="card-text"><i class="fas fa-map-marker-alt"></i> {{$item->company->address}}
+                                </div>
+                                <div class="card-text"><i class="fas fa-briefcase"></i> {{$item->position}}
+                                </div>
+                                @if ($item->address == 0)
+                                <div class="card-text"><i class="fas fa-dollar-sign"></i>
+                                    {{$item->salary_number($item->salary_min)}} -
+                                    {{$item->salary_number($item->salary_max)}}
+                                </div>
+                                @else
+                                <div class="card-text"><i class="fas fa-dollar-sign"></i> {{$item->address}}
+                                </div>
+                                @endif
+
                                 <div><i class="far fa-calendar-alt"></i>
                                     {{date('d/m/Y', strtotime($item->last_date))}}</div>
                             </div>

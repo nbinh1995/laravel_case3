@@ -14,7 +14,7 @@
                         </div> --}}
                     </div>
                     <div class="col-md-3 mb-3">
-                        <select class="custom-select">
+                        <select class="custom-select" name='category_id'>
                             <option selected disabled value="">Loại việc làm...</option>
                             @foreach ($category as $item)
                             <option value="{{$item->id}}">{{$item->name}}</option>

@@ -2,36 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Repositories\CompanyRepositoryInterface;
 use App\Http\Repositories\WorkRepositoryInterface;
 use App\Work;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class WorkController extends Controller
 {
     protected $workRepository;
+    protected $companyRepository;
 
-    public function __construct(WorkRepositoryInterface $workRepository)
+    public function __construct(WorkRepositoryInterface $workRepository, CompanyRepositoryInterface $companyRepository)
     {
+        $this->middleware('verified');
         $this->workRepository = $workRepository;
-    }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        $this->companyRepository = $companyRepository;
     }
 
     /**
@@ -42,7 +28,18 @@ class WorkController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // try {
+        $data = $request->all();
+        $data['slug'] = Str::slug($request->title);
+        $this->workRepository->store($data);
+        $company = $this->companyRepository->find($request->company_id);
+        $count = $company->works->count();
+        $job_company = view('partials.job_company', compact('company'))->render();
+
+        return response()->json(['code' => 200, 'job_company' => $job_company, 'count' => $count], 200);
+        // } catch (\Throwable $th) {
+        //     return response()->json("lỗi");
+        // }
     }
 
     /**
@@ -64,7 +61,7 @@ class WorkController extends Controller
      */
     public function edit(Work $work)
     {
-        //
+        
     }
 
     /**

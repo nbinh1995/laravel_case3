@@ -27,7 +27,7 @@ class EloquentRepository implements RepositoryInterface
 
     public function store($data)
     {
-        return $this->model->created($data);
+        return $this->model->create($data);
     }
 
     public function update($id, $data)
