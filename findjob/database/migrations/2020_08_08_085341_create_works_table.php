@@ -20,12 +20,15 @@ class CreateWorksTable extends Migration
             $table->bigInteger('category_id')->unsigned();
             $table->string('title');
             $table->string('slug');
-            $table->string('roles');
             $table->text('description');
+            $table->text('require');
+            $table->text('benefit');
             $table->string('position');
-            $table->text('address');
+            $table->string('contact_name');
+            $table->string('contact_phone');
+            $table->string('contact_email');
             $table->string('type');
-            $table->string('status');
+            $table->string('status')->default(0);
             $table->date('last_date');
             $table->integer('hot')->default(0);
             $table->softDeletes();

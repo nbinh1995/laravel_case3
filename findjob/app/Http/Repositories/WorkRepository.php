@@ -16,7 +16,7 @@ class WorkRepository extends EloquentRepository  implements WorkRepositoryInterf
 
     public function paginate($amount)
     {
-        return $this->model::with(['company:id,c_name,logo', 'category:id,name'])->paginate($amount);
+        return $this->model::with(['company:id,c_name,logo,address', 'category:id,name'])->paginate($amount);
     }
 
     public function isHotWorks()

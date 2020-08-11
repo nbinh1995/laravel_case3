@@ -32,7 +32,7 @@
     <div class="row justify-content-end">
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-info" data-toggle="modal" data-target="#updateModal">
-            Cập Nhật Thông Tin
+            <i class="fas fa-info-circle"></i> Cập Nhật Thông Tin
         </button>
     </div>
     <!-- Modal -->
@@ -40,7 +40,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Cập Nhật Thông Tin</h5>
+                    <h5 class="modal-title" id="exampleModalLabel"> Cập Nhật Thông Tin</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -114,7 +114,7 @@
                             </span>
                         </div>
                         <div class="form-group">
-                            <label for="description">Description</label>
+                            <label for="description">Giới Thiệu Công Ty</label>
                             <textarea class="form-control" name="description" id="description"
                                 placeholder="giới thiệu công ty...">{{$company->description}}</textarea>
                             <span class="text-danger" role="alert">

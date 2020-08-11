@@ -1,6 +1,6 @@
-var company = company || {};
+var work = work || {};
 
-company.showErrors = function (errors) {
+work.showErrors = function (errors) {
     if (errors['logo'] != null) {
         $('#err-logo').text(errors['logo'][0]);
     }
@@ -24,7 +24,15 @@ company.showErrors = function (errors) {
     }
 }
 
-company.update = function (ele) {
+work.create = function (ele) {
+
+}
+
+work.edit = function (ele) {
+
+}
+
+work.update = function (ele) {
     let data = new FormData(ele);
     let url = $(ele).attr('action');
     $.ajax({
@@ -39,35 +47,20 @@ company.update = function (ele) {
                 $('#updateModal').modal('hide');
                 $('body').removeClass('modal-open');
                 $('.modal-backdrop').remove();
-                $('#image-company').html(data['image_company']);
-                $('#menu1').html(data['info_company']);
+                $('#image-work').html(data['image_work']);
+                $('#menu1').html(data['info_work']);
                 toastr.options = { "positionClass": "toast-bottom-right" };
                 toastr["success"]("Cập Nhật Thông Tin Thành Công!");
             }
             if (data['code'] == 422) {
                 console.log(data['errors']['website']);
-                company.showErrors(data['errors'])
+                work.showErrors(data['errors'])
             }
         }
     });
 }
 
-company.uploadLogo = function (element) {
-    let img = element.files[0];
-    let reader = new FileReader();
-    reader.onloadend = function () {
-        $("#imgLogo").attr("src", reader.result);
-    }
-    reader.readAsDataURL(img);
-}
+work.destroy = function (ele) {
 
-company.uploadCover = function (element) {
-    let img = element.files[0];
-    let reader = new FileReader();
-    reader.onloadend = function () {
-        $("#imgCover").attr("src", reader.result);
-    }
-
-    reader.readAsDataURL(img);
 }
 

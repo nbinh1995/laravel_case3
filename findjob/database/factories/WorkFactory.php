@@ -14,13 +14,15 @@ $factory->define(Work::class, function (Faker $faker) {
         'category_id' => rand(1, 2),
         'title' => $name = $faker->sentence,
         'slug' => Str::slug($name),
-        'roles' => $faker->text,
         'description' => $faker->paragraph(rand(4, 8)),
+        'require' =>  $faker->paragraph(rand(4, 8)),
+        'benefit' =>  $faker->paragraph(rand(4, 8)),
+        'contact_name' => $faker->name,
+        'contact_phone' => $faker->tollFreePhoneNumber,
+        'contact_email' => $faker->safeEmail,
         'position' => $faker->jobTitle,
-        'address' => $faker->address,
-        'status' => rand(0, 1),
         'type' => $type[rand(0, 1)],
-        'last_date' => $faker->DateTime,
+        'last_date' => $faker->dateTimeBetween($startDate = 'now', $endDate = '+30 days'),
         'hot' => rand(0, 1)
     ];
 });

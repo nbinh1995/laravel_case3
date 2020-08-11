@@ -6,6 +6,7 @@ use App\Company;
 use App\Http\Repositories\CompanyRepositoryInterface;
 use Illuminate\Http\Request;
 use App\Http\Repositories\WorkRepositoryInterface;
+use App\Work;
 
 class HomeController extends Controller
 {
@@ -53,5 +54,10 @@ class HomeController extends Controller
     public function showCompany(Company $company)
     {
         return view('site.single_company', compact('company'));
+    }
+
+    public function showJob(Work $work)
+    {
+        return view('site.single_job', compact('work'));
     }
 }

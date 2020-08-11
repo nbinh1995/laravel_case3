@@ -14,8 +14,8 @@ $factory->define(Company::class, function (Faker $faker) {
         'address' => $faker->address,
         'phone' => $faker->tollFreePhoneNumber,
         'website' => $faker->domainName,
-        'logo' => '/storage/avatar/logo.svg',
-        'cover_photo' => '/storage/cover/banner.jpg',
+        'logo' => '/images/noimage.png',
+        'cover_photo' => '/images/default-banner.jpg',
         'slogan' => 'No Pain, No Gain',
         'description' => $faker->paragraph(rand(4, 8)),
         'hot' => rand(0, 1)

@@ -26,7 +26,7 @@
                     <div class="tab-pane active" id="menu1">
                         @include('partials.info_company')
                     </div>
-                    <div class="tab-pane fade" id="menu2">
+                    <div class="tab-pane fade bg-light" id="menu2">
                         @include('partials.job_company')
                     </div>
                 </div>
@@ -34,6 +34,6 @@
         </div>
     </div>
 </div>
-
 <script src="{{ asset('js/company.js')}}"></script>
+<script src="{{ asset('js/work.js')}}"></script>
 @endsection

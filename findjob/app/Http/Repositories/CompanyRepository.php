@@ -29,14 +29,18 @@ class CompanyRepository extends EloquentRepository implements CompanyRepositoryI
         $id->update($data->except('logo', 'cover_photo'));
         $id->slug = Str::slug($data->c_name);
         if ($data->hasFile('logo') && $data->file('logo')->isValid()) {
-            unlink(public_path($id->logo));
+            if ($id->logo != '/images/noimage.png') {
+                unlink(public_path($id->logo));
+            }
             $imagePath = $data->file('logo');
             $path = $imagePath->store('avatar', 'public');
             $id->logo = '/storage/' . $path;
         }
 
         if ($data->hasFile('cover_photo') && $data->file('cover_photo')->isValid()) {
-            unlink(public_path($id->cover_photo));
+            if ($id->logo != '/images/default-banner.jpg') {
+                unlink(public_path($id->cover_photo));
+            }
             $imagePath = $data->file('cover_photo');
             $path = $imagePath->store('cover', 'public');
             $id->cover_photo = '/storage/' . $path;

@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Category;
 use App\Http\Repositories\CompanyRepository;
 use App\Http\Repositories\CompanyRepositoryInterface;
 use App\Http\Repositories\ProfileRepository;
@@ -11,6 +12,7 @@ use App\Http\Repositories\UserRepositoryInterface;
 use App\Http\Repositories\WorkRepository;
 use App\Http\Repositories\WorkRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\View;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -34,6 +36,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        View::share('category', Category::all());
     }
 }

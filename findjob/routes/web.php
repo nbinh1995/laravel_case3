@@ -28,7 +28,11 @@ Route::group(['prefix' => 'dashboard'], function () {
 
 Route::group(['prefix' => 'jobs'], function () {
     Route::get('/', 'HomeController@jobs')->name('jobs.list');
-    Route::get('/{job}/show', 'WorkController@show')->name('jobs.show');
+    Route::get('/{work}/show', 'HomeController@showJob')->name('jobs.show');
+    Route::post('/store', 'WorkController@store')->name('jobs.store');
+    Route::get('/{work}/edit', 'WorkController@edit')->name('jobs.edit');
+    Route::patch('/{work}/update', 'WorkController@update')->name('jobs.update');
+    Route::delete('/{work}/delete', 'WorkController@destroy')->name('jobs.destroy');
 });
 
 Route::group(['prefix' => 'companies'], function () {
