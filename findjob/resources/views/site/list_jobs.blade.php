@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title','List Jobs Page')
+
 @section('search')
 @include('partials.search')
 @endsection
@@ -17,7 +19,8 @@
                 <a href="{{ route('jobs.show',['work'=> $item]) }}">
                     <div class="media">
                         <div class="box-company">
-                            <img src="{{$item->company->logo}}" class="align-self-start mr-3" style="width:100px">
+                            <img src="{{$item->company->logo}}" class="align-self-start mr-3"
+                                style="width:100px; height:100px">
                         </div>
                         <div class="media-body">
                             <div class="container">
@@ -85,3 +88,9 @@
 </div>
 
 @endsection
+
+@push('scripts')
+<style>
+    #nav-left .nav-item:nth-child(2) .nav-link {}
+</style>
+@endpush

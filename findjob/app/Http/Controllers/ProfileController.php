@@ -54,7 +54,7 @@ class ProfileController extends Controller
      */
     public function show(Profile $profile)
     {
-        //
+        return view('site.profile', compact('profile'));
     }
 
     /**

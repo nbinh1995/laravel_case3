@@ -57,7 +57,7 @@ class HomeController extends Controller
 
     public function showJob(Work $work)
     {
-        
         return view('site.single_job', compact('work'));
     }
+   
 }

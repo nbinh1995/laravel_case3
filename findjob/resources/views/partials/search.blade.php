@@ -9,9 +9,6 @@
                 <div class="form-row">
                     <div class="col-md-7 mb-3">
                         <input type="text" class="form-control" placeholder="Tìm kiếm việc làm,nhà tuyển dụng">
-                        {{-- <div class="invalid-tooltip">
-                            Please provide a valid city.
-                        </div> --}}
                     </div>
                     <div class="col-md-3 mb-3">
                         <select class="custom-select" name='category_id'>
@@ -20,12 +17,9 @@
                             <option value="{{$item->id}}">{{$item->name}}</option>
                             @endforeach
                         </select>
-                        {{-- <div class="invalid-tooltip">
-                            Please select a valid state.
-                        </div> --}}
                     </div>
                     <div class="col-md-2 mb-3">
-                        <button class="btn btn-warning" type="submit">Tìm kiếm</button>
+                        <button class="btn btn-outline-danger" type="submit">Tìm kiếm</button>
                     </div>
                 </div>
             </form>

@@ -5,7 +5,7 @@
             <a href="{{ route('jobs.show',['work'=> $item]) }}">
                 <div class="media">
                     <div class="box-company">
-                        <img src="{{$company->logo}}" class="align-self-start mr-3" style="width:100px">
+                        <img src="{{$company->logo}}" class="align-self-start mr-3" style="width:100px;height:100px">
                     </div>
                     <div class="media-body">
                         <div class="container">

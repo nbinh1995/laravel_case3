@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes(['verify' => true]);
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('/profiles/{profile}/edit', 'HomeController@candidates')->name('profiles.edit');
+Route::get('/profiles/{profile}/edit', 'ProfileController@show')->name('profiles.edit');
 
 Route::group(['prefix' => 'dashboard'], function () {
     Route::get('/', 'AdminController@index')->name('dashboard');

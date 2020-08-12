@@ -9,14 +9,21 @@
     <div class="row mt-3">
         <div class="col-md-12">
             <h3>Nhà Tuyển Dụng Nổi Bật</h3>
-            <hr>
-            <div class="row justify-content-center">
+            <div class="row justify-content-end">
+                <hr class="col-md-9">
+                <div class="col-md-2">
+                    <a href="">Xem Thêm</a>
+                </div>
+            </div>
+            <div class="row justify-content-around">
                 @forelse ($companies as $item)
                 <div class="col-md-2">
                     <div class="cursor">
                         <a href="{{route('companies.show',['company'=> $item])}}">
                             <div class="card box-company">
-                                <img src="{{ $item->cover_photo }}" class="card-img-top" alt="...">
+                                <div>
+                                    <img src="{{ $item->cover_photo }}" class="card-img-top" alt="...">
+                                </div>
                                 <div class="logo-company shadow-sm bg-white" style="left: 0;">
                                     <img src="{{$item->logo}}" alt="" style="width:60px">
                                 </div>
@@ -33,8 +40,13 @@
     <div class="row mt-5">
         <div class="col-md-12">
             <h3>Việc Làm Nổi Bật Nổi Bật</h3>
-            <hr>
-            <div class="row justify-content-center">
+            <div class="row justify-content-end">
+                <hr class="col-md-9">
+                <div class="col-md-2">
+                    <a href="">Xem Thêm</a>
+                </div>
+            </div>
+            <div class="row justify-content-around">
                 @forelse ($works as $item)
                 <div class="col-md-3">
                     <div class="card cursor">
@@ -42,7 +54,7 @@
                             <div class="box-company">
                                 <img src="{{$item->company->cover_photo}}" class="card-img-top" alt="...">
                                 <div class="logo-company shadow-sm bg-white">
-                                    <img src="{{$item->company->logo}}" alt="" style="width:60px">
+                                    <img src="{{$item->company->logo}}" alt="" style="width:60px;height:60px">
                                 </div>
                             </div>
                             <div class="card-body body-company">
@@ -67,7 +79,7 @@
                             </div>
                             <div class="card-footer">
                                 <small class="text-muted font-italic">Ngày Đăng:
-                                    {{date('d/m/Y', strtotime($item->create_at))}}</small>
+                                    {{date('d/m/Y', strtotime($item->created_at))}}</small>
                             </div>
                         </a>
                     </div>

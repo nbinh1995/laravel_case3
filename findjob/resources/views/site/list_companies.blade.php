@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title','List Companies Page')
+
 @section('search')
 @include('partials.search')
 @endsection
@@ -14,7 +16,7 @@
                     <div class="box-company">
                         <img src="{{$item->cover_photo}}" class="card-img-top" alt="...">
                         <div class="logo-company shadow-sm bg-white">
-                            <img src="{{$item->logo}}" alt="" style="width:60px">
+                            <img src="{{$item->logo}}" alt="" style="width:60px; height:60px">
                         </div>
                     </div>
                     <div class="card-body body-company">
