@@ -4,5 +4,5 @@ namespace App\Http\Repositories;
 
 interface WorkRepositoryInterface extends RepositoryInterface
 {
-    public function isHotWorks();
+    public function isHotWorks($num);
 }

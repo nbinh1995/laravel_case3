@@ -45,7 +45,6 @@ company.update = function (ele) {
                 toastr["success"]("Cập Nhật Thông Tin Thành Công!");
             }
             if (data['code'] == 422) {
-                console.log(data['errors']['website']);
                 company.showErrors(data['errors'])
             }
         }

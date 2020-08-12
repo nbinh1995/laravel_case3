@@ -41,25 +41,25 @@
                         <div class="card-footer">
                             <div class="row justify-content-end">
                                 <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#addModal2">
-                                    <i class="fas fa-cloud-upload-alt"></i> Đăng Tuyển Dụng
+                                <button type="button" class="btn btn-info" data-urln="{{ route('jobs.store')}}"
+                                    onclick="work.create(this)"><i class="fas fa-cloud-upload-alt"></i> Đăng Tuyển Dụng
                                 </button>
                             </div>
                             <!-- Modal add -->
-                            <div class="modal fade" id="addModal2" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            <div class="modal fade" id="WorksModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                                 aria-hidden="true">
                                 <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Đăng Tuyển Dụng</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel"></h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
-                                        <form action="{{ route('jobs.store')}}"
-                                            onsubmit="event.preventDefault();work.create(this)" method="post"
+                                        <form action="" onsubmit="event.preventDefault();work.save(this)" method="post"
                                             enctype="multipart/form-data">
                                             @csrf
+                                            @method('PATCH')
                                             <div class="modal-body">
                                                 <input type="hidden" name="company_id" value="{{$company->id}}">
                                                 <div class="form-group">
@@ -126,6 +126,14 @@
                                                         <strong id="err-benefit"></strong>
                                                     </span>
                                                 </div>
+                                                <div class="form-group">
+                                                    <label for="require">Yêu Cầu Công Việc</label>
+                                                    <textarea class="form-control" name="require" id="require"
+                                                        placeholder="Yêu cầu công việc..."></textarea>
+                                                    <span class="text-danger" role="alert">
+                                                        <strong id="err-require"></strong>
+                                                    </span>
+                                                </div>
                                                 <div class="form-group row align-items-md-end">
                                                     <div class="col-md-4">
                                                         <label for="salary_min">Mức Lương Thấp Nhất</label>
@@ -146,19 +154,11 @@
                                                     <div class="col-md-4">
                                                         <div class="custom-control custom-checkbox">
                                                             <input type="checkbox" class="custom-control-input"
-                                                                name="status" id="status" onclick="checkStatus()">
+                                                                name="status" id="status" onchange="checkStatus()">
                                                             <label class="custom-control-label" for="status">Thương
                                                                 Lượng</label>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="require">Yêu Cầu Công Việc</label>
-                                                    <textarea class="form-control" name="require" id="require"
-                                                        placeholder="Yêu cầu công việc..."></textarea>
-                                                    <span class="text-danger" role="alert">
-                                                        <strong id="err-require"></strong>
-                                                    </span>
                                                 </div>
                                                 <div class="form-group row">
                                                     <div class="col-md-12">

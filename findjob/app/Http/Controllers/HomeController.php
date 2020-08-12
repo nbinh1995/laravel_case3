@@ -30,24 +30,23 @@ class HomeController extends Controller
 
     public function index()
     {
-        $works = $this->workRepository->isHotWorks()
-            ->take(4)
-            ->get();
-        $companies = $this->companyRepository->isHotCompanies()
-            ->take(5)
-            ->get();
+        $works = $this->workRepository->isHotWorks(4);
+        $companies = $this->companyRepository->isHotCompanies(5);
+
         return view('home', compact('works', 'companies'));
     }
 
     public function jobs()
     {
         $works = $this->workRepository->paginate(self::AmountWorks);
+
         return view('site.list_jobs', compact('works'));
     }
 
     public function companies()
     {
         $companies = $this->companyRepository->paginate(self::AmountCompanies);
+
         return view('site.list_companies', compact('companies'));
     }
 
@@ -58,6 +57,7 @@ class HomeController extends Controller
 
     public function showJob(Work $work)
     {
+        
         return view('site.single_job', compact('work'));
     }
 }

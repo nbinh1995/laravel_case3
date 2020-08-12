@@ -36,13 +36,13 @@ class Work extends Model
         $n = (0 + str_replace(",", "", $n));
 
         // is this a number?
-        if (!is_numeric($n)) return false;
+        if (!is_numeric($n)) return 0;
 
         // now filter it;
-        if ($n > 1000000000000) return round(($n / 1000000000000), 1) . ' k tỷ';
+        if ($n > 1000000000000) return round(($n /  1000000000000), 1) . ' ngàn tỷ';
         elseif ($n > 1000000000) return round(($n / 1000000000), 1) . ' tỷ';
-        elseif ($n > 1000000) return round(($n / 1000000), 1) . ' tr';
-        elseif ($n > 1000) return round(($n / 1000), 1) . ' k';
+        elseif ($n > 1000000) return round(($n / 1000000), 1) . ' triệu';
+        elseif ($n > 100000) return round(($n / 100000), 1) . ' trăm ngàn';
 
         return number_format($n);
     }
@@ -58,8 +58,12 @@ class Work extends Model
         parent::boot();
 
         static::deleting(function ($work) { // before delete() method call this
-            $work->applicants()->delete;
-            $work->favorites()->delete;
+            foreach ($work->applicants() as $item) {
+                $item->delete;
+            }
+            foreach ($work->favorites() as $item) {
+                $item->delete;
+            }
         });
     }
 }

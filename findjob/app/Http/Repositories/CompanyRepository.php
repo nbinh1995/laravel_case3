@@ -19,9 +19,9 @@ class CompanyRepository extends EloquentRepository implements CompanyRepositoryI
         return $this->model::with('works:company_id')->paginate($amount);
     }
 
-    public function isHotCompanies()
+    public function isHotCompanies($num)
     {
-        return $this->model::where('hot', 1);
+        return $this->model::where('hot', 1)->take($num)->get();
     }
 
     public function update($id, $data)
@@ -38,7 +38,7 @@ class CompanyRepository extends EloquentRepository implements CompanyRepositoryI
         }
 
         if ($data->hasFile('cover_photo') && $data->file('cover_photo')->isValid()) {
-            if ($id->logo != '/images/default-banner.jpg') {
+            if ($id->cover_photo != '/images/default-banner.jpg') {
                 unlink(public_path($id->cover_photo));
             }
             $imagePath = $data->file('cover_photo');

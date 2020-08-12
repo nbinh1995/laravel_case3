@@ -24,7 +24,7 @@ $factory->define(Work::class, function (Faker $faker) {
         'salary_min' => $faker->numberBetween(5000000, 6000000),
         'salary_max' =>  $faker->numberBetween(7000000, 15000000),
         'type' => $type[rand(0, 1)],
-        'status' => 0,
+        'status' => false,
         'last_date' => $faker->dateTimeBetween($startDate = 'now', $endDate = '+30 days'),
         'hot' => rand(0, 1)
     ];

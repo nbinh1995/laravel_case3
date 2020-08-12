@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Repositories\CompanyRepositoryInterface;
 use App\Http\Repositories\WorkRepositoryInterface;
+use App\Http\Requests\WorkRequest;
 use App\Work;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -26,20 +27,19 @@ class WorkController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(WorkRequest $request)
     {
-        // try {
-        $data = $request->all();
-        $data['slug'] = Str::slug($request->title);
-        $this->workRepository->store($data);
-        $company = $this->companyRepository->find($request->company_id);
-        $count = $company->works->count();
-        $job_company = view('partials.job_company', compact('company'))->render();
+        try {
+            $this->workRepository->store($request);
+            $company = $this->companyRepository->find($request->company_id);
+            $count = $company->works->count();
 
-        return response()->json(['code' => 200, 'job_company' => $job_company, 'count' => $count], 200);
-        // } catch (\Throwable $th) {
-        //     return response()->json("lỗi");
-        // }
+            $job_company = view('partials.job_company', compact('company'))->render();
+
+            return response()->json(['code' => 200, 'job_company' => $job_company, 'count' => $count], 200);
+        } catch (\Throwable $th) {
+            return response()->json("lỗi");
+        }
     }
 
     /**
@@ -61,7 +61,7 @@ class WorkController extends Controller
      */
     public function edit(Work $work)
     {
-        
+        return response()->json(['code' => 200, 'work' => $work], 200);
     }
 
     /**
@@ -73,7 +73,16 @@ class WorkController extends Controller
      */
     public function update(Request $request, Work $work)
     {
-        //
+        try {
+            $this->workRepository->update($work->id, $request->all());
+            $company = $this->companyRepository->find($work->company_id);
+
+            $job_company = view('partials.job_company', compact('company'))->render();
+
+            return response()->json(['code' => 200, 'job_company' => $job_company], 200);
+        } catch (\Throwable $th) {
+            return response()->json("lỗi");
+        }
     }
 
     /**
@@ -84,6 +93,12 @@ class WorkController extends Controller
      */
     public function destroy(Work $work)
     {
-        //
+        $this->workRepository->destroy($work->id);
+        $company = $this->companyRepository->find($work->company_id);
+        $count = $company->works->count();
+
+        $job_company = view('partials.job_company', compact('company'))->render();
+
+        return response()->json(['code' => 200, 'job_company' => $job_company,  'count' => $count], 200);
     }
 }

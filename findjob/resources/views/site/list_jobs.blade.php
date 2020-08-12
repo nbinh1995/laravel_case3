@@ -47,7 +47,7 @@
                                             </div>
                                             <div class="col-md-12"><i class="fas fa-briefcase"></i> {{$item->position}}
                                             </div>
-                                            @if ($item->address == 0)
+                                            @if ($item->status == 0)
                                             <div class="col-md-12"><i class="fas fa-dollar-sign"></i>
                                                 {{$item->salary_number($item->salary_min)}} -
                                                 {{$item->salary_number($item->salary_max)}}

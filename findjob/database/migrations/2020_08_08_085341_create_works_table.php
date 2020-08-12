@@ -27,10 +27,10 @@ class CreateWorksTable extends Migration
             $table->string('contact_name');
             $table->string('contact_phone');
             $table->string('contact_email');
-            $table->string('type');
+            $table->enum('type', ['FullTime', 'PartTime']);
             $table->double('salary_min')->nullable();
             $table->double('salary_max')->nullable();
-            $table->tinyInteger('status');
+            $table->boolean('status');
             $table->date('last_date');
             $table->integer('hot')->default(0);
             $table->softDeletes();

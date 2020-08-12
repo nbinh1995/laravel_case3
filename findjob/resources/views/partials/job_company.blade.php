@@ -38,7 +38,7 @@
                                         </div>
                                         <div class="col-md-12"><i class="fas fa-briefcase"></i> {{$item->position}}
                                         </div>
-                                        @if ($item->address == 0)
+                                        @if ($item->status == 0)
                                         <div class="col-md-12"><i class="fas fa-dollar-sign"></i>
                                             {{$item->salary_number($item->salary_min)}} -
                                             {{$item->salary_number($item->salary_max)}}
@@ -62,11 +62,16 @@
             <hr>
             <div class="row justify-content-end mb-3 mr-1">
                 <button onclick="work.edit(this)" data-url="{{route('jobs.edit',['work'=>$item])}}"
-                    class="btn btn-outline-primary"><i class="far fa-edit"></i>
+                    data-urln="{{route('jobs.update',['work'=>$item])}}" class="btn btn-outline-primary"><i
+                        class="far fa-edit"></i>
                     Sửa</button>
-                <button onclick="work.destroy(this)" data-url="{{route('jobs.destroy',['work'=>$item])}}"
-                    class="btn btn-outline-danger ml-1"><i class="far fa-trash-alt"></i>
-                    Xóa</button>
+                <form action="{{route('jobs.destroy',['work'=>$item])}}" method="post"
+                    onsubmit="event.preventDefault();work.destroy(this)">
+                    @csrf
+                    @method('delete')
+                    <button type="submit" class="btn btn-outline-danger ml-1"><i class="far fa-trash-alt"></i>
+                        Xóa</button>
+                </form>
             </div>
         </div>
         @endif
