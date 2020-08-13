@@ -12,7 +12,7 @@ class Profile extends Model
 
     protected function user()
     {
-        return $this->hasOne(User::class, 'user_id', 'id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
     public function applicants()
@@ -20,15 +20,6 @@ class Profile extends Model
         return $this->hasMany(Applicant::class, 'profile_id', 'id');
     }
 
-    public function format()
-    {
-        return [
-            'customer_id' => $this->id,
-            'name' => $this->name,
-            'created_by' => $this->user->email,
-            'last_updated' => $this->updated_at->diffForHumans(),
-        ];
-    }
 
     public static function boot()
     {

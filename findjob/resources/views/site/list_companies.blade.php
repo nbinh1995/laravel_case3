@@ -29,12 +29,13 @@
                     </div>
                 </a>
             </div>
-
         </div>
         @empty
 
         @endforelse
-        {{ $companies->appends(request()->query()) }}
+        <div class="col-md-12 row justify-content-center">
+            {{ $companies->appends(request()->query()) }}
+        </div>
     </div>
 </div>
 @endsection

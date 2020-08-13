@@ -31,7 +31,7 @@ class WorkRequest extends FormRequest
     {
         return [
             'company_id' => 'required',
-            'title' => 'required|unique:works,title',
+            'title' => 'required|title',
             'category_id' => 'required',
             'description' => 'required',
             'require' => 'required',
@@ -53,7 +53,6 @@ class WorkRequest extends FormRequest
         return [
             'company_id.required' => 'Không được để trống',
             'title.required' => 'Không được để trống',
-            'title.unique' => 'Tieu de bi trung',
             'category_id.required' => 'Không được để trống',
             'description.required' => 'Không được để trống',
             'benefit.required' => 'Không được để trống',

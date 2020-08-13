@@ -6,7 +6,7 @@
 <div class="col-md-12 search-bot">
     <div class="box-logo">
         <div class="logo">
-            <img src="{{$company->logo}}" alt="">
+            <img src="{{$company->logo}}" alt="" class="img-middle">
         </div>
     </div>
 </div>

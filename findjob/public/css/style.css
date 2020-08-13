@@ -41,20 +41,7 @@ html {
     height: 250px;
     overflow: hidden;
 }
-.labelCover {
-    position: relative;
-    width: 300px;
-    height: 150px;
-    overflow: hidden;
-    cursor: pointer;
-}
-.labelCover img {
-    width: 100%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
+
 .banner .img-middle {
     width: 100%;
     position: absolute;
@@ -148,17 +135,15 @@ html {
 
 .image-container {
     position: relative;
+    overflow: hidden;
 }
-
-.image {
-    opacity: 1;
-    display: block;
+.img {
     width: 100%;
-    height: auto;
-    transition: 0.5s ease;
-    backface-visibility: hidden;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
-
 .middle {
     transition: 0.5s ease;
     opacity: 0;

@@ -29,7 +29,7 @@ class CompanyRequest extends FormRequest
         return [
             'logo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5000',
             'cover_photo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5000',
-            'c_name' => 'required|string|max:255|unique:companies,c_name',
+            'c_name' => 'required|string|max:255|c_name',
             'address' => 'required',
             'phone' => 'required|regex:/^0[0-9]{9,10}$/',
             'website' => 'regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/',
@@ -48,7 +48,6 @@ class CompanyRequest extends FormRequest
             'cover_photo.max' => 'Ảnh cover_photo phải dưới 5000kb',
             'c_name.required' => ' Tên công ty không được để trống',
             'c_name.max' => 'Tên công ty không được quá 255 kí tự',
-            'c_name.unique' => 'Ten cong ty bi trung',
             'address.required' => 'Địa chỉ công ty không được để trống',
             'phone.required' => 'Số điện thoại không được bỏ trống',
             'phone.regex' => 'Số điện thoại không đúng định dạng',

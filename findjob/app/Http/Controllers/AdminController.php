@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Company;
 use App\Http\Repositories\CompanyRepositoryInterface;
-use App\Http\Repositories\JobRepositoryInterface;
+use App\Http\Repositories\WorkRepositoryInterface;
 use App\Http\Repositories\UserRepositoryInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 class AdminController extends Controller
 {
     protected $userRepository;
-    protected $jobRepository;
+    protected $workRepository;
     protected $companyRepository;
     /**
      * Create a new controller instance.
@@ -21,12 +21,12 @@ class AdminController extends Controller
      */
     public function __construct(
         UserRepositoryInterface $userRepository,
-        JobRepositoryInterface $jobRepository,
+        WorkRepositoryInterface $workRepository,
         CompanyRepositoryInterface $companyRepository
     ) {
         $this->middleware('auth');
         $this->userRepository = $userRepository;
-        $this->jobRepository = $jobRepository;
+        $this->workRepository = $workRepository;
         $this->companyRepository = $companyRepository;
     }
 

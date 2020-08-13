@@ -12,7 +12,7 @@
             <div class="row justify-content-end">
                 <hr class="col-md-9">
                 <div class="col-md-2">
-                    <a href="">Xem Thêm</a>
+                    <a href="{{route('companies.list')}}">Xem Thêm</a>
                 </div>
             </div>
             <div class="row justify-content-around">
@@ -43,7 +43,7 @@
             <div class="row justify-content-end">
                 <hr class="col-md-9">
                 <div class="col-md-2">
-                    <a href="">Xem Thêm</a>
+                    <a href="{{route('jobs.list')}}">Xem Thêm</a>
                 </div>
             </div>
             <div class="row justify-content-around">
@@ -87,9 +87,6 @@
                 @empty
 
                 @endforelse
-
-
-
             </div>
         </div>
     </div>
