@@ -60,11 +60,17 @@ work.reset = function () {
 
 work.create = function (ele) {
     let urln = $(ele).data('urln');
-    this.reset();
-    $('#WorksModal').find('form').attr('action', urln);
-    $('#WorksModal').find('h5').text('Đăng Tuyển Dụng');
-    $('#WorksModal').find("input[name='_method']").prop("disabled", true)
-    $('#WorksModal').modal('show');
+    let active = $(ele).data('urln');
+    if (active == 'ACTIVE') {
+        this.reset();
+        $('#WorksModal').find('form').attr('action', urln);
+        $('#WorksModal').find('h5').text('Đăng Tuyển Dụng');
+        $('#WorksModal').find("input[name='_method']").prop("disabled", true)
+        $('#WorksModal').modal('show');
+    } else {
+        toastr.options = { "positionClass": "toast-bottom-right" };
+        toastr["warning"]("Bạn chưa được admin cấp quyền!");
+    }
 }
 
 work.store = function (ele) {
@@ -172,14 +178,14 @@ work.destroy = function (ele) {
     let data = new FormData(ele);
     let url = $(ele).attr('action');
     bootbox.confirm({
-        message: "This is a confirm with custom button text and color! Do you like it?",
+        message: "Bạn có chắc chắn?",
         buttons: {
             confirm: {
-                label: 'Yes',
+                label: 'Có',
                 className: 'btn-success'
             },
             cancel: {
-                label: 'No',
+                label: 'Không',
                 className: 'btn-danger'
             }
         },

@@ -28,6 +28,10 @@ Route::group(['prefix' => 'dashboard'], function () {
     Route::get('/users', 'AdminController@users')->name('dashboard.users');
     Route::get('/jobs', 'AdminController@jobs')->name('dashboard.jobs');
     Route::get('/companies', 'AdminController@companies')->name('dashboard.companies');
+    Route::get('/users_companies', 'AdminController@users_companies')->name('dashboard.users_companies');
+    Route::get('/users_candidates', 'AdminController@users_candidates')->name('dashboard.users_candidates');
+    Route::delete('/{id}/users_companies', 'AdminController@destroy_users_companies')->name('dashboard.destroy_users_companies');
+    Route::delete('/{id}/users_candidates', 'AdminController@destroy_users_candidates')->name('dashboard.destroy_users_candidates');
 });
 
 Route::group(['prefix' => 'jobs'], function () {

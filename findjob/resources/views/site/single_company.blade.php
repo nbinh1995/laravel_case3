@@ -44,7 +44,8 @@
                             <div class="row justify-content-end">
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-info" data-urln="{{ route('jobs.store')}}"
-                                    onclick="work.create(this)"><i class="fas fa-cloud-upload-alt"></i> Đăng Tuyển Dụng
+                                    data-active="{{$company->active}}" onclick="work.create(this)"><i
+                                        class="fas fa-cloud-upload-alt"></i> Đăng Tuyển Dụng
                                 </button>
                             </div>
                             <!-- Modal add -->

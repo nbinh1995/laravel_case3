@@ -26,7 +26,9 @@ class Profile extends Model
         parent::boot();
 
         static::deleting(function ($profile) { // before delete() method call this
-            $profile->applicants()->delete;
+            foreach ($profile->applicants() as $item) {
+                $item->delete;
+            }
         });
     }
 }

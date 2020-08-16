@@ -16,7 +16,7 @@ class EloquentRepository implements RepositoryInterface
 
     public function all()
     {
-        return $this->model->all();
+        return $this->model->orderBy('created_at', 'desc')->get();
     }
 
     public function paginate($amount)

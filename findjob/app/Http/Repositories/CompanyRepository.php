@@ -14,6 +14,16 @@ class CompanyRepository extends EloquentRepository implements CompanyRepositoryI
         parent::__construct($model);
     }
 
+    public function active()
+    {
+        return $this->model->orderBy('created_at', 'desc')->where('active', 'ACTIVE')->get();
+    }
+
+    public function no_active()
+    {
+        return $this->model->orderBy('created_at', 'desc')->where('active', 'NO_ACTIVE')->get();
+    }
+
     public function paginate($amount)
     {
         return $this->model::with('works:company_id')->paginate($amount);

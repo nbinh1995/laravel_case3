@@ -61,6 +61,7 @@ class WorkController extends Controller
      */
     public function edit(Work $work)
     {
+        
         return response()->json(['code' => 200, 'work' => $work], 200);
     }
 

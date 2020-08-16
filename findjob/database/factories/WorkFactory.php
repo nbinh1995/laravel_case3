@@ -10,7 +10,7 @@ use Faker\Generator as Faker;
 $factory->define(Work::class, function (Faker $faker) {
     $type = ['FullTime', 'PartTime'];
     return [
-        'company_id' => Company::all()->random()->id,
+        'company_id' => Company::where('active', 'ACTIVE')->get()->random()->id,
         'category_id' => rand(1, 2),
         'title' => $name = $faker->sentence,
         'slug' => Str::slug($name),

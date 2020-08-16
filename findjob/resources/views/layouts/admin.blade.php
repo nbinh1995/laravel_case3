@@ -3,7 +3,8 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <!-- Meta, title, CSS, favicons, etc. -->
+  <!-- Meta, title, CSS, favicons,CSRF Token etc. -->
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -72,8 +73,8 @@
               <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
             </a>
             <a data-toggle="tooltip" data-placement="top" title="Logout" href="{{ route('logout') }}"
-              onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+              onclick="event.preventDefault();document.getElementById('logout-form2').submit();">
+              <form id="logout-form2" action="{{ route('logout') }}" method="POST" style="display: none;">
                 @csrf
               </form>
               <span class="glyphicon glyphicon-off" aria-hidden="true"></span>

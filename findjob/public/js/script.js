@@ -47,8 +47,8 @@ function apply(ele) {
                 toastr.options = { "positionClass": "toast-bottom-right" };
                 toastr["success"]("Ứng tuyển Thành Công!");
             } else {
-                // toastr.options = { "positionClass": "toast-bottom-right" };
-                // toastr["warnning"]("Ứng tuyển Thành Công!");
+                toastr.options = { "positionClass": "toast-bottom-right" };
+                toastr["warning"]("Bạn chưa được admin cấp quyền!");
             }
         }
     });

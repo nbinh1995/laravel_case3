@@ -83,4 +83,44 @@ class AdminController extends Controller
             return redirect()->route('home');
         }
     }
+
+    public function users_candidates()
+    {
+        if (Auth::user()->role == 2) {
+            $profile = $this->profileRepository->all();
+            return response()->json(['code' => 200, 'candidates' => $profile], 200);
+        } else {
+            return response()->json(['code' => 403], 200);
+        }
+    }
+
+    public function users_companies()
+    {
+        if (Auth::user()->role == 2) {
+            $companies = $this->companyRepository->active();
+            return response()->json(['code' => 200, 'companies' => $companies], 200);
+        } else {
+            return response()->json(['code' => 403], 200);
+        }
+    }
+
+    public function destroy_users_companies($id)
+    {
+        if (Auth::user()->role == 2) {
+            $this->companyRepository->destroy($id);
+            return response()->json(['code' => 200], 200);
+        } else {
+            return response()->json(['code' => 403], 200);
+        }
+    }
+
+    public function destroy_users_candidates($id)
+    {
+        if (Auth::user()->role == 2) {
+            $this->profileRepository->destroy($id);
+            return response()->json(['code' => 200], 200);
+        } else {
+            return response()->json(['code' => 403], 200);
+        }
+    }
 }
