@@ -15,9 +15,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Auth::routes(['verify' => true]);
+Auth::routes([
+    'register' => true,
+    'verify' => true,
+    'reset' => true
+]);
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('/profiles/{profile}/edit', 'ProfileController@show')->name('profiles.edit');
+
 
 Route::group(['prefix' => 'dashboard'], function () {
     Route::get('/', 'AdminController@index')->name('dashboard');
@@ -28,17 +32,24 @@ Route::group(['prefix' => 'dashboard'], function () {
 
 Route::group(['prefix' => 'jobs'], function () {
     Route::get('/', 'HomeController@jobs')->name('jobs.list');
-    Route::get('/{work}/show', 'HomeController@showJob')->name('jobs.show');
+    Route::get('/show/{work}', 'HomeController@showJob')->name('jobs.show');
     Route::post('/store', 'WorkController@store')->name('jobs.store');
-    Route::get('/{work}/edit', 'WorkController@edit')->name('jobs.edit');
+    Route::get('/edit/{work}', 'WorkController@edit')->name('jobs.edit');
     Route::patch('/{work}/update', 'WorkController@update')->name('jobs.update');
     Route::delete('/{work}/delete', 'WorkController@destroy')->name('jobs.destroy');
 });
 
 Route::group(['prefix' => 'companies'], function () {
     Route::get('/', 'HomeController@companies')->name('companies.list');
-    Route::get('/{company}/show', 'HomeController@showCompany')->name('companies.show');
-    Route::get('/{company}/edit', 'CompanyController@edit')->name('companies.edit');
+    Route::get('/show/{company}', 'HomeController@showCompany')->name('companies.show');
+    Route::get('/edit/{company}', 'CompanyController@edit')->name('companies.edit');
     Route::patch('/{company}/update', 'CompanyController@update')->name('companies.update');
-    Route::get('/{company}/candidates', 'CompanyController@candidates')->name('companies.candidates');
+    Route::get('/candidates/{company}', 'CompanyController@candidates')->name('companies.candidates');
+});
+
+Route::group(['prefix' => 'profiles'], function () {
+    Route::get('/{profile}/show', 'ProfileController@show')->name('profiles.show');
+    Route::get('/{profile}/edit', 'ProfileController@edit')->name('profiles.edit');
+    Route::patch('/{profile}/update', 'ProfileController@update')->name('profiles.update');
+    Route::post('/apply', 'ProfileController@apply')->name('profiles.apply');
 });

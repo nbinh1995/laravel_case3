@@ -88,9 +88,3 @@
 </div>
 
 @endsection
-
-@push('scripts')
-<style>
-    #nav-left .nav-item:nth-child(2) .nav-link {}
-</style>
-@endpush

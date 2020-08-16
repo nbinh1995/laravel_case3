@@ -27,6 +27,7 @@ class CreateCompaniesTable extends Migration
             $table->string('slogan')->nullable();
             $table->text('description')->nullable();
             $table->integer('hot')->default(0);
+            $table->enum('active', ['ACTIVE', 'NO_ACTIVE'])->default('NO_ACTIVE');
             $table->softDeletes()->nullable();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

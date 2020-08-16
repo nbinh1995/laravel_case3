@@ -25,3 +25,53 @@ $(window).scroll(function (e) {
         }
     }
 });
+
+function apply(ele) {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    url = $(ele).data('url');
+    work_id = $(ele).data('work');
+    profile_id = $(ele).data('profile');
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: {
+            'work_id': work_id,
+            'profile_id': profile_id
+        },
+        success: function (data) {
+            if (data['code'] == '200') {
+                toastr.options = { "positionClass": "toast-bottom-right" };
+                toastr["success"]("Ứng tuyển Thành Công!");
+            } else {
+                // toastr.options = { "positionClass": "toast-bottom-right" };
+                // toastr["warnning"]("Ứng tuyển Thành Công!");
+            }
+        }
+    });
+}
+let flag = true
+function fullScreen() {
+    if (flag) {
+        document.documentElement.requestFullscreen();
+        flag = false;
+    } else {
+        document.exitFullscreen();
+        flag = true;
+    }
+}
+
+$(document).on({
+    ajaxStart: function () {
+        $("#spinner").show();
+    },
+    ajaxStop: function () {
+        $("#spinner").hide();
+    },
+    ajaxError: function () {
+        $("#spinner").hide();
+    }
+});

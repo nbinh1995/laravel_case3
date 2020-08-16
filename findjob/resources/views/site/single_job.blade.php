@@ -2,6 +2,12 @@
 
 @section('title','Job Page')
 
+@push('css')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css"
+    integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g=="
+    crossorigin="anonymous" />
+@endpush
+
 @section('search')
 <div class="container">
     <div class="row justify-content-center">
@@ -34,9 +40,22 @@
                     @endif
                     <div class="col-md-12"><i class="far fa-calendar-alt"></i>
                         {{date('d/m/Y', strtotime($work->last_date))}}</div>
-                    <div class="mt-1 mb-1 col-md-12"><button type="button" class="btn btn-outline-danger">Ứng Tuyển
+                    @auth
+                    @if (Auth::user()->role == 0)
+                    <div class="mt-1 mb-1 col-md-12">
+                        <button type="button" class="btn btn-outline-danger" data-work="{{$work->id}}"
+                            data-profile="{{Auth::user()->profile->id}}" data-url="{{ route('profiles.apply')}}"
+                            onclick="apply(this)">Ứng Tuyển
                             Ngay</button>
                     </div>
+                    @else
+                    <button type="button" class="btn btn-outline-danger" disabled> Tài Khoản Không Thể Ứng
+                        Tuyển</button>
+                    @endif
+                    @endauth
+                    @guest
+                    <button type="button" class="btn btn-outline-danger" disabled> Đăng Nhập Để Ứng Tuyển</button>
+                    @endguest
                 </div>
             </div>
         </div>
@@ -81,3 +100,9 @@
     </div>
 </div>
 @endsection
+
+@push('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+    integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+    crossorigin="anonymous"></script>
+@endpush

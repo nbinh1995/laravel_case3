@@ -3,13 +3,13 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 use App\Applicant;
-use App\Job;
 use App\Profile;
+use App\Work;
 use Faker\Generator as Faker;
 
 $factory->define(Applicant::class, function (Faker $faker) {
     return [
-        // 'job_id' => Job::all()->random()->id,
-        // 'profile_id' => Profile::all()->random()->id
+        'work_id' => Work::all()->random()->id,
+        'profile_id' => Profile::all()->random()->id
     ];
 });

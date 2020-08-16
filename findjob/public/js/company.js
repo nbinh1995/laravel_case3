@@ -41,6 +41,7 @@ company.update = function (ele) {
                 $('.modal-backdrop').remove();
                 $('#image-company').html(data['image_company']);
                 $('#menu1').html(data['info_company']);
+                $('#job_company').html(data['job_company']);
                 toastr.options = { "positionClass": "toast-bottom-right" };
                 toastr["success"]("Cập Nhật Thông Tin Thành Công!");
             }

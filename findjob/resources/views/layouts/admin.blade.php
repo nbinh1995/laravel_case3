@@ -13,13 +13,13 @@
   <!-- Spinner js -->
   <script src="{{asset('js/spinner.js')}}"></script>
   <!-- Fonts Awesome -->
-  {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" /> --}}
   <link href="{{ asset('/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
   <!-- Styles -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
   <!-- Custom Theme Style -->
   <link href="{{ asset('/css/custom.css')}}" rel="stylesheet">
+  @stack('css')
 </head>
 
 <body class="nav-md">
@@ -37,7 +37,8 @@
           <!-- menu profile quick info -->
           <div class="profile clearfix">
             <div class="profile_pic">
-              <img src="{{asset('images/img.jpg')}}" alt="..." class="img-circle profile_img">
+              <img src="{{asset('images/logo_jobport.png')}}" alt="..." class="img-circle profile_img"
+                style="width: 45px;height: 45px;">
             </div>
             <div class="profile_info">
               <span>Welcome,</span>
@@ -67,13 +68,14 @@
 
           <!-- /menu footer buttons -->
           <div class="sidebar-footer hidden-small">
-            <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+            <a data-toggle="tooltip" data-placement="top" title="FullScreen" onclick="fullScreen()">
               <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
             </a>
-            <a data-toggle="tooltip" data-placement="top" title="Lock">
-              <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-            </a>
-            <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+            <a data-toggle="tooltip" data-placement="top" title="Logout" href="{{ route('logout') }}"
+              onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+              </form>
               <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
             </a>
           </div>
@@ -92,7 +94,7 @@
               <li class="nav-item dropdown open" style="padding-left: 15px;">
                 <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown"
                   data-toggle="dropdown" aria-expanded="false">
-                  <img src="{{asset('images/img.jpg')}}" alt="">{{ Auth::user()->name}}
+                  <img src="{{asset('images/logo_jobport.png')}}" alt="">{{ Auth::user()->name}}
                 </a>
                 <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
@@ -143,8 +145,6 @@
       <div class="right_col" role="main">
         @yield('content')
         <!-- top tiles -->
-
-
       </div>
       <!-- /page content -->
 
@@ -165,10 +165,11 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
     integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
   </script>
-  <!-- Bootbox -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js"></script>
+
   <!-- Custom Theme Scripts -->
   <script src="{{ asset('/js/custom.js')}}"></script>
+  @stack('scripts')
+  <script src="{{ asset('/js/script.js')}}"></script>
 </body>
 
 </html>

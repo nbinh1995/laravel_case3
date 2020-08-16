@@ -17,12 +17,16 @@ class WorkRepository extends EloquentRepository  implements WorkRepositoryInterf
 
     public function paginate($amount)
     {
-        return $this->model::with(['company:id,c_name,logo,address'])->paginate($amount);
+
+        return $this->model::with(['company:id,c_name,logo,address'])
+            ->orderBy('created_at', 'desc')
+            ->where('last_date', '>=', date("Y-m-d"))
+            ->paginate($amount);
     }
 
     public function isHotWorks($num)
     {
-        return $this->model::where('hot', 1)->with(['company:id,c_name,cover_photo,logo,address'])->take($num)->get();
+        return $this->model::where('hot', 1)->with(['company:id,c_name,cover_photo,logo,address'])->where('last_date', '>=', date("Y-m-d"))->take($num)->get();
     }
 
     public function store($data)

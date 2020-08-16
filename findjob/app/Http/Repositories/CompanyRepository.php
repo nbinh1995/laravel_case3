@@ -24,6 +24,11 @@ class CompanyRepository extends EloquentRepository implements CompanyRepositoryI
         return $this->model::where('hot', 1)->take($num)->get();
     }
 
+    public function isActive($num)
+    {
+        return $this->model::where('active', 0)->take($num)->get();
+    }
+
     public function update($id, $data)
     {
         $id->update($data->except('logo', 'cover_photo'));

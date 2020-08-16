@@ -14,6 +14,11 @@ class EloquentRepository implements RepositoryInterface
         $this->model = $model;
     }
 
+    public function all()
+    {
+        return $this->model->all();
+    }
+
     public function paginate($amount)
     {
         return $this->model->paginate($amount);

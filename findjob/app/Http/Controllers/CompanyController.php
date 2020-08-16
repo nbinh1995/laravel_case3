@@ -18,29 +18,10 @@ class CompanyController extends Controller
         $this->middleware('verified');
         $this->companyRepository = $companyRepository;
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
     public function candidates(Company $company)
     {
         return view('site.candidates');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -77,13 +58,14 @@ class CompanyController extends Controller
     public function update(CompanyRequest $request, Company $company)
     {
         $data = $this->companyRepository->update($company, $request);
-        // $job_company = view('partials.job_company')->render();
+        $job_company = view('partials.job_company', ['company' => $data])->render();
         $image_company = view('partials.image_company', ['company' => $data])->render();
         $info_company = view('partials.info_company', ['company' => $data])->render();
         return response()->json([
             'code' => 200,
             'image_company' => $image_company,
-            'info_company' => $info_company
+            'info_company' => $info_company,
+            'job_company' => $job_company
         ], 200);
     }
 
