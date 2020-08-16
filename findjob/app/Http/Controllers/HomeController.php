@@ -36,6 +36,16 @@ class HomeController extends Controller
         return view('home', compact('works', 'companies'));
     }
 
+    public function search(Request $request)
+    {
+        $works = $this->workRepository->search($request->search, self::AmountWorks);
+        if ($works) {
+            return view('site.list_jobs', compact('works'));
+        } else {
+            return redirect('/jobs');
+        }
+    }
+
     public function jobs()
     {
         $works = $this->workRepository->paginate(self::AmountWorks);
@@ -59,5 +69,4 @@ class HomeController extends Controller
     {
         return view('site.single_job', compact('work'));
     }
-   
 }

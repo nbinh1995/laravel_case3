@@ -21,18 +21,9 @@ class CompanyController extends Controller
 
     public function candidates(Company $company)
     {
-        return view('site.candidates');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+        if (Auth::user()->id == $company->user_id) {
+            return view('site.candidates', compact('company'));
+        } else return redirect()->route('companies.show', compact('company'));
     }
 
     /**

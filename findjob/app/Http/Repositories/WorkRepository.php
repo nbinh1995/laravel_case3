@@ -24,6 +24,13 @@ class WorkRepository extends EloquentRepository  implements WorkRepositoryInterf
             ->paginate($amount);
     }
 
+    public function search($data, $amount)
+    {
+        return $this->model::where('last_date', '>=', date("Y-m-d"))
+            ->where('title', 'LIKE', '%' . $data . '%')
+            ->orderBy('created_at', 'desc')->paginate($amount);
+    }
+
     public function isHotWorks($num)
     {
         return $this->model::where('hot', 1)->with(['company:id,c_name,cover_photo,logo,address'])->where('last_date', '>=', date("Y-m-d"))->take($num)->get();

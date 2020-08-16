@@ -26,14 +26,14 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="card-box table-responsive">
-                                <table id="table_id" class="display">
+                                <table id="jobs" class="display" data-url="{{ route('dashboard.jobs_api')}}">
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Thể Loại</th>
                                             <th>Tiêu Đề</th>
-                                            <th>Công Ty</th>
                                             <th>Hạn Cuối</th>
+                                            <th>Hot</th>
+                                            <th>Hành động</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -58,5 +58,5 @@
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 <!-- Bootbox -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js"></script>
-<script src="{{asset('js/user.js')}}"></script>
+<script src="{{asset('js/work.js')}}"></script>
 @endpush

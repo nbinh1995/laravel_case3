@@ -15,7 +15,7 @@
         <div class="col-md-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Data Tables <small> Companies </small></h2>
+                    <h2>Data Tables <small> Companies No Active </small></h2>
                     <ul class="nav navbar-right panel_toolbox" style="padding-left: 100%;">
                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                         </li>
@@ -26,7 +26,8 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="card-box table-responsive">
-                                <table id="users-companies" class="display">
+                                <table id="companies-noact" class="display"
+                                    data-url="{{route('dashboard.companies_noAct')}}">
                                     <thead>
                                         <tr>
                                             <th>#</th>
@@ -60,5 +61,5 @@
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 <!-- Bootbox -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js"></script>
-<script src="{{asset('js/user.js')}}"></script>
+<script src="{{asset('js/company.js')}}"></script>
 @endpush

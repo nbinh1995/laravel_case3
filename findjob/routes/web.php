@@ -21,7 +21,7 @@ Auth::routes([
     'reset' => true
 ]);
 Route::get('/', 'HomeController@index')->name('home');
-
+Route::get('/search', 'HomeController@search')->name('search');
 
 Route::group(['prefix' => 'dashboard'], function () {
     Route::get('/', 'AdminController@index')->name('dashboard');
@@ -30,8 +30,13 @@ Route::group(['prefix' => 'dashboard'], function () {
     Route::get('/companies', 'AdminController@companies')->name('dashboard.companies');
     Route::get('/users_companies', 'AdminController@users_companies')->name('dashboard.users_companies');
     Route::get('/users_candidates', 'AdminController@users_candidates')->name('dashboard.users_candidates');
+    Route::patch('/{id}/users_companies', 'AdminController@hot_company')->name('dashboard.users_companies_hot');
     Route::delete('/{id}/users_companies', 'AdminController@destroy_users_companies')->name('dashboard.destroy_users_companies');
     Route::delete('/{id}/users_candidates', 'AdminController@destroy_users_candidates')->name('dashboard.destroy_users_candidates');
+    Route::get('/jobs_api', 'AdminController@job_api')->name('dashboard.jobs_api');
+    Route::patch('/{id}/jobs_api', 'AdminController@job_api_hot')->name('dashboard.jobs_api_hot');
+    Route::get('/companies_noAct', 'AdminController@companies_noAct')->name('dashboard.companies_noAct');
+    Route::patch('/{id}/companies_noAct', 'AdminController@active')->name('dashboard.companies_noAct_act');
 });
 
 Route::group(['prefix' => 'jobs'], function () {

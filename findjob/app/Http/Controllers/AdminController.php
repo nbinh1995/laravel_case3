@@ -104,6 +104,46 @@ class AdminController extends Controller
         }
     }
 
+    public function companies_noAct()
+    {
+        if (Auth::user()->role == 2) {
+            $companies = $this->companyRepository->no_active();
+            return response()->json(['code' => 200, 'companies' => $companies], 200);
+        } else {
+            return response()->json(['code' => 403], 200);
+        }
+    }
+
+    public function active($id)
+    {
+        if (Auth::user()->role == 2) {
+            $company = $this->companyRepository->find($id);
+            $company->active = 'ACTIVE';
+            $company->save();
+            return response()->json(['code' => 200], 200);
+        } else {
+            return response()->json(['code' => 403], 200);
+        }
+    }
+
+    public function hot_company($id)
+    {
+        if (Auth::user()->role == 2) {
+            $company = $this->companyRepository->find($id);
+            if ($company->hot) {
+                $company->hot = 0;
+            } else {
+                $company->hot = 1;
+            }
+
+            $company->save();
+
+            return response()->json(['code' => 200], 200);
+        } else {
+            return response()->json(['code' => 403], 200);
+        }
+    }
+
     public function destroy_users_companies($id)
     {
         if (Auth::user()->role == 2) {
@@ -118,6 +158,34 @@ class AdminController extends Controller
     {
         if (Auth::user()->role == 2) {
             $this->profileRepository->destroy($id);
+            return response()->json(['code' => 200], 200);
+        } else {
+            return response()->json(['code' => 403], 200);
+        }
+    }
+
+    public function job_api()
+    {
+        if (Auth::user()->role == 2) {
+            $works = $this->workRepository->all();
+            return response()->json(['code' => 200, 'jobs' => $works], 200);
+        } else {
+            return response()->json(['code' => 403], 200);
+        }
+    }
+
+    public function job_api_hot($id)
+    {
+        if (Auth::user()->role == 2) {
+            $work = $this->workRepository->find($id);
+            if ($work->hot) {
+                $work->hot = 0;
+            } else {
+                $work->hot = 1;
+            }
+
+            $work->save();
+
             return response()->json(['code' => 200], 200);
         } else {
             return response()->json(['code' => 403], 200);

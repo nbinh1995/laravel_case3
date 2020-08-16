@@ -30,7 +30,9 @@ class Company extends Model
         parent::boot();
 
         static::deleting(function ($company) { // before delete() method call this
-            $company->works()->delete;
+            foreach ($company->works() as $item) {
+                $item->delete;
+            }
         });
     }
 }

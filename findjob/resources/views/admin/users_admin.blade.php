@@ -36,6 +36,7 @@
                                             <th>Địa chỉ</th>
                                             <th>Điện Thoại</th>
                                             <th>Website</th>
+                                            <th>Hot</th>
                                             <th>Hành động</th>
                                         </tr>
                                     </thead>

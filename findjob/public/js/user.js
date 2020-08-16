@@ -9,7 +9,7 @@ user.showCompanies = function () {
         method: "GET",
         dataType: "json",
         success: function (data) {
-            console.log(data);
+
             let table = $('#users-companies').DataTable();
             table
                 .clear()
@@ -22,7 +22,9 @@ user.showCompanies = function () {
                     `${v.address ?? '...Chưa Cập Nhật...'}`,
                     `${v.phone ?? '...Chưa Cập Nhật...'}`,
                     `${v.website ?? '...Chưa Cập Nhật...'}`,
-                    `<button class="btn btn-danger" onclick="user.destroyCompanies(${v.id})">Xóa</button>`
+                    `${v.hot == 0 ? 'Binh thuong' : 'Hot'}`,
+                    `<button class="btn btn-primary" onclick="user.hotCompany(${v.id})">isHot</button>
+                    <button class="btn btn-danger" onclick="user.destroyCompanies(${v.id})">Xóa</button>`
                 ]).draw();
             });
         }
@@ -36,7 +38,6 @@ user.showCandidates = function () {
         method: "GET",
         dataType: "json",
         success: function (data) {
-            console.log(data);
             let table = $('#users-candidates').DataTable();
             table
                 .clear()
@@ -52,6 +53,26 @@ user.showCandidates = function () {
                     `<button class="btn btn-danger" onclick="user.destroyCandidates(${v.id})">Xóa</button>`
                 ]).draw();
             });
+        }
+    });
+}
+
+user.hotCompany = function (id) {
+    let token = $("meta[name='csrf-token']").attr("content");
+    let url = path + `/dashboard/${id}/users_companies`;
+    $.ajax({
+        type: 'POST',
+        url: url,
+        data: {
+            '_token': token,
+            '_method': 'PATCH'
+        },
+        success: function (data) {
+            if (data['code'] == 200) {
+                user.showCompanies();
+                toastr.options = { "positionClass": "toast-bottom-right" };
+                toastr["success"]("Thao tac Thành Công!");
+            }
         }
     });
 }
@@ -94,8 +115,7 @@ user.destroyCompanies = function (id) {
 
 user.destroyCandidates = function (id) {
     let token = $("meta[name='csrf-token']").attr("content");
-    console.log(token);
-    let url = path + `/dashboard/${id}/users_candidates`
+    let url = path + `/dashboard/${id}/users_candidates`;
     bootbox.confirm({
         message: "Bạn có chắc chắn?",
         buttons: {
@@ -132,8 +152,11 @@ user.destroyCandidates = function (id) {
 user.init = function () {
     user.showCompanies();
     user.showCandidates();
+
 }
 
 $(document).ready(function () {
     user.init();
 });
+
+
